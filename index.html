@@ -129,7 +129,7 @@ tr.add-proj-row td{padding:6px 12px;background:#fafaf7;border-bottom:2px solid v
 .pdfopt-row label{display:flex;align-items:center;gap:10px;font-size:13px;color:#555}
 .pdfopt-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--dark)}
 
-.sync-badge{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 8px;border-radius:20px;transition:all .3s}
+.sync-badge{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 8px;border-radius:20px;transition:all .3s;cursor:pointer}
 .sync-idle{color:#555;background:transparent}
 .sync-busy{color:#f0a83a;background:rgba(240,168,58,.15)}
 .sync-ok{color:#b8f03a;background:rgba(184,240,58,.15)}
@@ -142,7 +142,7 @@ tr.add-proj-row td{padding:6px 12px;background:#fafaf7;border-bottom:2px solid v
 <div class="topbar">
   <div class="topbar-r1">
     <div class="logo">time<em>.</em>sheet</div>
-    <div class="top-btns"><span id="syncBadge" class="sync-badge sync-idle">●</span>
+    <div class="top-btns"><span id="syncBadge" class="sync-badge sync-idle" title="Sync GitHub">●</span>
       <button class="tbtn" onclick="openManage()">⚙ Gérer</button>
       <button class="tbtn" onclick="openPdfModal()">↓ PDF</button>
       <button class="tbtn" onclick="exportCSV()">↓ CSV</button>
@@ -362,10 +362,23 @@ var addProjFilterCid = null;
 // ═══════════════════════════════════════════════════════════════
 // GITHUB SYNC
 // ═══════════════════════════════════════════════════════════════
-var GITHUB_API  = "https://api.github.com/repos/maximecorteil-ui/timesheet/contents/data.json";
-var GITHUB_TOKEN = "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";
+var GITHUB_REPO  = "maximecorteil-ui/timesheet";
+var GITHUB_FILE  = "data.json";
+var GITHUB_TOKEN = load('gh_token', "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");
 var syncTimer = null;
-var currentSha = null; // SHA du fichier data.json pour les updates
+var currentSha = null;
+
+function ghHeaders() {
+  return {
+    'Authorization': 'token ' + GITHUB_TOKEN,
+    'Accept': 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json'
+  };
+}
+
+function ghApiUrl() {
+  return 'https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + GITHUB_FILE;
+}
 
 function setSyncStatus(s) {
   var el = document.getElementById('syncBadge');
@@ -397,67 +410,53 @@ function pushToGitHub() {
     savedAt: new Date().toISOString()
   };
   var content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-  var body = {
-    message: 'timesheet sync ' + new Date().toISOString().slice(0,16),
-    content: content
-  };
+  var body = {message: 'sync ' + new Date().toISOString().slice(0,16), content: content};
   if (currentSha) body.sha = currentSha;
 
-  fetch(GITHUB_API, {
-    method: 'PUT',
-    headers: {
-      'Authorization': 'token ' + GITHUB_TOKEN,
-      'Content-Type': 'application/json',
-      'Accept': 'application/vnd.github.v3+json'
-    },
-    body: JSON.stringify(body)
+  fetch(ghApiUrl(), {method:'PUT', headers:ghHeaders(), body:JSON.stringify(body)})
+  .then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
   })
-  .then(function(r) { return r.json(); })
   .then(function(res) {
-    if (res.content && res.content.sha) {
+    if (res.content) {
       currentSha = res.content.sha;
       setSyncStatus('ok');
       setTimeout(function(){ setSyncStatus('idle'); }, 3000);
     } else {
-      console.error('GitHub push error', res);
       setSyncStatus('error');
     }
   })
   .catch(function(e) {
-    console.error('GitHub push fail', e);
+    console.error('push error', e);
     setSyncStatus('error');
   });
 }
 
 function pullFromGitHub(callback) {
   setSyncStatus('syncing');
-  fetch(GITHUB_API + '?t=' + Date.now(), {
-    headers: {
-      'Authorization': 'token ' + GITHUB_TOKEN,
-      'Accept': 'application/vnd.github.v3+json'
-    }
+  fetch(ghApiUrl() + '?t=' + Date.now(), {method:'GET', headers:ghHeaders()})
+  .then(function(r) {
+    if (r.status === 404) { setSyncStatus('idle'); if(callback) callback(); return null; }
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
   })
-  .then(function(r) { return r.json(); })
   .then(function(res) {
-    if (res.content) {
-      currentSha = res.sha;
-      var json = decodeURIComponent(escape(atob(res.content.replace(/\n/g,''))));
-      var d = JSON.parse(json);
-      if (d.companies && d.companies.length) { companies = d.companies; save('ts_companies', companies); }
-      if (d.projects  && d.projects.length)  { projects  = d.projects;  save('ts_projects',  projects); }
-      if (d.activeProjects) { activeProjects = d.activeProjects; save('ts_activeProjects', activeProjects); }
-      if (d.hours)    { hours    = d.hours;    save('ts_hours',    hours); }
-      if (d.comments) { comments = d.comments; save('ts_comments', comments); }
-      setSyncStatus('ok');
-      setTimeout(function(){ setSyncStatus('idle'); }, 2000);
-    } else {
-      // Fichier n'existe pas encore, pas d'erreur
-      setSyncStatus('idle');
-    }
+    if (!res) return;
+    currentSha = res.sha;
+    var json = decodeURIComponent(escape(atob(res.content.replace(/\n/g,''))));
+    var d = JSON.parse(json);
+    if (d.companies && d.companies.length) { companies = d.companies; save('ts_companies', companies); }
+    if (d.projects  && d.projects.length)  { projects  = d.projects;  save('ts_projects',  projects); }
+    if (d.activeProjects) { activeProjects = d.activeProjects; save('ts_activeProjects', activeProjects); }
+    if (d.hours)    { hours    = d.hours;    save('ts_hours',    hours); }
+    if (d.comments) { comments = d.comments; save('ts_comments', comments); }
+    setSyncStatus('ok');
+    setTimeout(function(){ setSyncStatus('idle'); }, 2000);
     if (callback) callback();
   })
   .catch(function(e) {
-    console.error('GitHub pull fail', e);
+    console.error('pull error', e);
     setSyncStatus('error');
     if (callback) callback();
   });
