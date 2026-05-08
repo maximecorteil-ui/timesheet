@@ -1,0 +1,48 @@
+{
+  "companies": [
+    {
+      "id": "c1",
+      "name": "Royen SA",
+      "color": "#b8f03a"
+    },
+    {
+      "id": "c2",
+      "name": "Client Externe",
+      "color": "#6a8af7"
+    }
+  ],
+  "projects": [
+    {
+      "id": "p1",
+      "cid": "c1",
+      "name": "Reporting mensuel"
+    },
+    {
+      "id": "p2",
+      "cid": "c1",
+      "name": "Clôture annuelle"
+    },
+    {
+      "id": "p3",
+      "cid": "c2",
+      "name": "Audit Q2"
+    }
+  ],
+  "activeProjects": {
+    "2026-05-04": [
+      "p1"
+    ]
+  },
+  "hours": {
+    "2026-05-04": {
+      "p1": {
+        "3": 3,
+        "4": 3,
+        "5": 1.5,
+        "6": 1.5
+      }
+    }
+  },
+  "comments": {},
+  "savedAt": "2026-05-08T16:53:52.972Z"
+}
