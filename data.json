@@ -176,6 +176,11 @@
       "id": "uyeazz",
       "cid": "idnqw0",
       "name": "Général"
+    },
+    {
+      "id": "k0ceic",
+      "cid": "3ewq4x",
+      "name": "Projet de reprise"
     }
   ],
   "activeProjects": {
@@ -351,7 +356,8 @@
       "6viuiv",
       "e5vrpg",
       "8hmk5y",
-      "cheybp"
+      "cheybp",
+      "k0ceic"
     ]
   },
   "hours": {
@@ -896,5 +902,5 @@
       }
     }
   },
-  "savedAt": "2026-05-11T15:50:14.481Z"
+  "savedAt": "2026-05-11T15:50:27.723Z"
 }
