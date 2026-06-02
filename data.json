@@ -89,6 +89,11 @@
       "id": "3ewq4x",
       "name": "Tennis Club de Herve",
       "color": "#f0d83a"
+    },
+    {
+      "id": "4cya8m",
+      "name": "VIA Group",
+      "color": "#f76a8a"
     }
   ],
   "projects": [
@@ -1070,5 +1075,5 @@
       }
     }
   },
-  "savedAt": "2026-06-01T08:42:02.950Z"
+  "savedAt": "2026-06-02T12:14:49.183Z"
 }
