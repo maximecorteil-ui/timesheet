@@ -196,6 +196,11 @@
       "id": "rq0ftr",
       "cid": "4cya8m",
       "name": "Général"
+    },
+    {
+      "id": "895g4q",
+      "cid": "0u44xk",
+      "name": "Général"
     }
   ],
   "activeProjects": {
@@ -423,7 +428,8 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr"
+      "rq0ftr",
+      "895g4q"
     ]
   },
   "hours": {
@@ -1111,5 +1117,5 @@
       }
     }
   },
-  "savedAt": "2026-06-03T12:15:19.460Z"
+  "savedAt": "2026-06-03T12:15:24.297Z"
 }
