@@ -94,6 +94,11 @@
       "id": "4cya8m",
       "name": "VIA Group",
       "color": "#f76a8a"
+    },
+    {
+      "id": "0u44xk",
+      "name": "Seventy",
+      "color": "#f0a83a"
     }
   ],
   "projects": [
@@ -1106,5 +1111,5 @@
       }
     }
   },
-  "savedAt": "2026-06-03T12:15:04.407Z"
+  "savedAt": "2026-06-03T12:15:19.460Z"
 }
