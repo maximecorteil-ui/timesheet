@@ -221,6 +221,11 @@
       "id": "zntm6k",
       "cid": "rse0mf",
       "name": "Générél"
+    },
+    {
+      "id": "vh51rw",
+      "cid": "rse0mf",
+      "name": "Général"
     }
   ],
   "activeProjects": {
@@ -488,7 +493,8 @@
       "a8jcy3",
       "rq0ftr",
       "895g4q",
-      "vpgwl8"
+      "vpgwl8",
+      "vh51rw"
     ],
     "2026-06-22": [
       "5yaf7u",
@@ -1269,5 +1275,5 @@
       }
     }
   },
-  "savedAt": "2026-06-25T12:44:54.567Z"
+  "savedAt": "2026-06-25T12:45:07.254Z"
 }
