@@ -241,6 +241,11 @@
       "id": "5ywxip",
       "cid": "dmho0p",
       "name": "M&A"
+    },
+    {
+      "id": "9wy0qn",
+      "cid": "e2uxmh",
+      "name": "M&A"
     }
   ],
   "activeProjects": {
@@ -530,7 +535,8 @@
       "rq0ftr",
       "895g4q",
       "g3jzsi",
-      "5ywxip"
+      "5ywxip",
+      "9wy0qn"
     ]
   },
   "hours": {
@@ -1340,5 +1346,5 @@
       }
     }
   },
-  "savedAt": "2026-06-25T12:49:44.569Z"
+  "savedAt": "2026-06-25T12:49:52.546Z"
 }
