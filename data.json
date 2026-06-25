@@ -104,6 +104,11 @@
       "id": "qbg2wk",
       "name": "Cube Renting",
       "color": "#f0d83a"
+    },
+    {
+      "id": "rse0mf",
+      "name": "Valcerex",
+      "color": "#b8f03a"
     }
   ],
   "projects": [
@@ -1259,5 +1264,5 @@
       }
     }
   },
-  "savedAt": "2026-06-25T12:44:33.897Z"
+  "savedAt": "2026-06-25T12:44:46.414Z"
 }
