@@ -99,6 +99,11 @@
       "id": "0u44xk",
       "name": "Seventy",
       "color": "#f0a83a"
+    },
+    {
+      "id": "qbg2wk",
+      "name": "Cube Renting",
+      "color": "#f0d83a"
     }
   ],
   "projects": [
@@ -1245,5 +1250,5 @@
       }
     }
   },
-  "savedAt": "2026-06-25T12:44:05.059Z"
+  "savedAt": "2026-06-25T12:44:19.185Z"
 }
