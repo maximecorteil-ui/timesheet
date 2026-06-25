@@ -109,6 +109,11 @@
       "id": "rse0mf",
       "name": "Valcerex",
       "color": "#b8f03a"
+    },
+    {
+      "id": "e2uxmh",
+      "name": "Cubiglace",
+      "color": "#6a8af7"
     }
   ],
   "projects": [
@@ -1335,5 +1340,5 @@
       }
     }
   },
-  "savedAt": "2026-06-25T12:49:22.957Z"
+  "savedAt": "2026-06-25T12:49:44.569Z"
 }
