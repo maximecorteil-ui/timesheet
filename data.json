@@ -226,11 +226,6 @@
       "id": "vh51rw",
       "cid": "rse0mf",
       "name": "Général"
-    },
-    {
-      "id": "dn26aq",
-      "cid": "men8w7",
-      "name": "Polom&"
     }
   ],
   "activeProjects": {
@@ -518,8 +513,7 @@
       "k0ceic",
       "a8jcy3",
       "rq0ftr",
-      "895g4q",
-      "dn26aq"
+      "895g4q"
     ]
   },
   "hours": {
@@ -1310,5 +1304,5 @@
       }
     }
   },
-  "savedAt": "2026-06-25T12:47:46.511Z"
+  "savedAt": "2026-06-25T12:48:05.010Z"
 }
