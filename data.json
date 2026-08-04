@@ -246,6 +246,11 @@
       "id": "9wy0qn",
       "cid": "e2uxmh",
       "name": "M&A"
+    },
+    {
+      "id": "5h6pvl",
+      "cid": "jot311",
+      "name": "CubiGlace"
     }
   ],
   "activeProjects": {
@@ -680,7 +685,8 @@
       "5ywxip",
       "9wy0qn",
       "vpgwl8",
-      "vh51rw"
+      "vh51rw",
+      "5h6pvl"
     ]
   },
   "hours": {
@@ -1607,5 +1613,5 @@
       }
     }
   },
-  "savedAt": "2026-08-03T07:54:39.495Z"
+  "savedAt": "2026-08-04T10:15:47.979Z"
 }
