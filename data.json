@@ -1,119 +1,165 @@
 {
+  "entities": [
+    {
+      "id": "emyjbsz",
+      "name": "Gehlen Management",
+      "color": "#1a2d4a"
+    },
+    {
+      "id": "eum52ss",
+      "name": "MaCo",
+      "color": "#b8f03a"
+    },
+    {
+      "id": "evjac19",
+      "name": "Indépendant",
+      "color": "#f0a83a"
+    }
+  ],
   "companies": [
     {
       "id": "pcbkqu",
       "name": "Ardenne Rails",
-      "color": "#b8f03a"
+      "color": "#b8f03a",
+      "eid": "emyjbsz"
     },
     {
       "id": "pz2cn9",
       "name": "BSL",
-      "color": "#6a8af7"
+      "color": "#6a8af7",
+      "eid": "emyjbsz"
     },
     {
       "id": "jy28o6",
       "name": "City Rent",
-      "color": "#f0a83a"
+      "color": "#f0a83a",
+      "eid": "emyjbsz"
     },
     {
       "id": "65e6q2",
       "name": "Deveux-Collin",
-      "color": "#f76a8a"
+      "color": "#f76a8a",
+      "eid": "eum52ss"
     },
     {
       "id": "12q42w",
       "name": "Dôme / Spirou",
-      "color": "#3ad4f0"
+      "color": "#3ad4f0",
+      "eid": "evjac19"
     },
     {
       "id": "ce0ioq",
       "name": "Gehlen Immo",
-      "color": "#a06af7"
-    },
-    {
-      "id": "jot311",
-      "name": "Gehlen Management",
-      "color": "#f0d83a"
+      "color": "#a06af7",
+      "eid": "emyjbsz"
     },
     {
       "id": "9bzn4n",
       "name": "I-Xpérience",
-      "color": "#f0a83a"
+      "color": "#f0a83a",
+      "eid": "emyjbsz"
     },
     {
       "id": "c3cpyd",
-      "name": "Internal",
-      "color": "#6abf69"
-    },
-    {
-      "id": "men8w7",
-      "name": "MaCo - Dossiers",
-      "color": "#f76a6a"
+      "name": "Interne",
+      "color": "#6abf69",
+      "eid": "emyjbsz"
     },
     {
       "id": "w213gu",
-      "name": "MaCo Interne",
-      "color": "#3ad4f0"
+      "name": "Interne",
+      "color": "#3ad4f0",
+      "eid": "eum52ss"
     },
     {
       "id": "c8d27n",
       "name": "Moviemills",
-      "color": "#a06af7"
+      "color": "#a06af7",
+      "eid": "emyjbsz"
     },
     {
       "id": "dmho0p",
       "name": "MyHotel",
-      "color": "#f0d83a"
+      "color": "#f0d83a",
+      "eid": "emyjbsz"
     },
     {
       "id": "llp0ek",
       "name": "Royen",
-      "color": "#6a8af7"
+      "color": "#6a8af7",
+      "eid": "emyjbsz"
     },
     {
       "id": "bouepa",
       "name": "Spa Racing",
-      "color": "#b8f03a"
+      "color": "#b8f03a",
+      "eid": "emyjbsz"
     },
     {
       "id": "965rcq",
       "name": "Sustainable",
-      "color": "#f76a8a"
+      "color": "#f76a8a",
+      "eid": "emyjbsz"
     },
     {
       "id": "idnqw0",
       "name": "VIA Group",
-      "color": "#3ad4f0"
+      "color": "#3ad4f0",
+      "eid": "emyjbsz"
     },
     {
       "id": "3ewq4x",
       "name": "Tennis Club de Herve",
-      "color": "#f0d83a"
-    },
-    {
-      "id": "4cya8m",
-      "name": "VIA Group",
-      "color": "#f76a8a"
+      "color": "#f0d83a",
+      "eid": "eum52ss"
     },
     {
       "id": "0u44xk",
       "name": "Seventy",
-      "color": "#f0a83a"
+      "color": "#f0a83a",
+      "eid": "emyjbsz"
     },
     {
       "id": "qbg2wk",
       "name": "Cube Renting",
-      "color": "#f0d83a"
+      "color": "#f0d83a",
+      "eid": "emyjbsz"
     },
     {
       "id": "rse0mf",
       "name": "Valcerex",
-      "color": "#b8f03a"
+      "color": "#b8f03a",
+      "eid": "emyjbsz"
     },
     {
       "id": "e2uxmh",
       "name": "Cubiglace",
-      "color": "#6a8af7"
+      "color": "#6a8af7",
+      "eid": "emyjbsz"
+    },
+    {
+      "id": "jbq2ro",
+      "name": "Divers",
+      "color": "#f0d83a",
+      "eid": "emyjbsz"
+    },
+    {
+      "id": "i8z5xi",
+      "name": "Beaune",
+      "color": "#f0d83a",
+      "eid": "emyjbsz"
+    },
+    {
+      "id": "w8lxbi",
+      "name": "Divers",
+      "color": "#f76a6a",
+      "eid": "eum52ss"
+    },
+    {
+      "id": "jyc5l3",
+      "name": "Polomé",
+      "color": "#f76a6a",
+      "eid": "eum52ss"
     }
   ],
   "projects": [
@@ -149,7 +195,7 @@
     },
     {
       "id": "k0ofpa",
-      "cid": "jot311",
+      "cid": "jbq2ro",
       "name": "Général"
     },
     {
@@ -164,7 +210,7 @@
     },
     {
       "id": "8hmk5y",
-      "cid": "men8w7",
+      "cid": "w8lxbi",
       "name": "Général"
     },
     {
@@ -208,11 +254,6 @@
       "name": "Projet de reprise"
     },
     {
-      "id": "rq0ftr",
-      "cid": "4cya8m",
-      "name": "Général"
-    },
-    {
       "id": "895g4q",
       "cid": "0u44xk",
       "name": "Général"
@@ -223,19 +264,14 @@
       "name": "Général"
     },
     {
-      "id": "zntm6k",
-      "cid": "rse0mf",
-      "name": "Générél"
-    },
-    {
       "id": "vh51rw",
       "cid": "rse0mf",
       "name": "Général"
     },
     {
       "id": "g3jzsi",
-      "cid": "men8w7",
-      "name": "Polomé"
+      "cid": "jyc5l3",
+      "name": "Général"
     },
     {
       "id": "5ywxip",
@@ -249,13 +285,13 @@
     },
     {
       "id": "5h6pvl",
-      "cid": "jot311",
-      "name": "CubiGlace"
+      "cid": "e2uxmh",
+      "name": "Général"
     },
     {
       "id": "mgvuby",
-      "cid": "jot311",
-      "name": "Beaune"
+      "cid": "i8z5xi",
+      "name": "Général"
     }
   ],
   "activeProjects": {
@@ -293,8 +329,7 @@
       "mzgo04",
       "tyw23c",
       "k0ofpa",
-      "6obv5q",
-      "rq0ftr"
+      "6obv5q"
     ],
     "2026-02-09": [
       "ss7tdy",
@@ -303,8 +338,7 @@
       "e5vrpg",
       "uyeazz",
       "24xjz2",
-      "6obv5q",
-      "rq0ftr"
+      "6obv5q"
     ],
     "2026-02-16": [
       "k0ofpa",
@@ -327,8 +361,7 @@
       "k0ofpa",
       "e5vrpg",
       "uyeazz",
-      "5yaf7u",
-      "rq0ftr"
+      "5yaf7u"
     ],
     "2026-03-09": [
       "5yaf7u",
@@ -486,7 +519,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q"
     ],
     "2026-06-08": [
@@ -505,7 +538,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q"
     ],
     "2026-06-15": [
@@ -524,7 +557,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "vpgwl8",
       "vh51rw"
@@ -545,7 +578,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -567,7 +600,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -591,7 +624,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -615,7 +648,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -639,7 +672,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -663,7 +696,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -687,7 +720,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -710,7 +743,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -732,7 +765,7 @@
       "8hmk5y",
       "cheybp",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -755,7 +788,7 @@
       "8hmk5y",
       "cheybp",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -779,7 +812,7 @@
       "8hmk5y",
       "cheybp",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -805,7 +838,7 @@
       "cheybp",
       "k0ceic",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -829,7 +862,7 @@
       "8hmk5y",
       "cheybp",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -853,7 +886,7 @@
       "8hmk5y",
       "cheybp",
       "k0ceic",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -876,7 +909,7 @@
       "8hmk5y",
       "cheybp",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -897,7 +930,7 @@
       "8hmk5y",
       "cheybp",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -923,7 +956,7 @@
       "8hmk5y",
       "cheybp",
       "a8jcy3",
-      "rq0ftr",
+      "uyeazz",
       "895g4q",
       "g3jzsi",
       "5ywxip",
@@ -1029,8 +1062,8 @@
         "4": 2
       },
       "uyeazz": {
-        "0": 0,
-        "3": 0
+        "0": 5,
+        "3": 3
       },
       "mzgo04": {
         "1": 1,
@@ -1047,10 +1080,6 @@
       "6obv5q": {
         "2": 6,
         "3": 6
-      },
-      "rq0ftr": {
-        "0": 5,
-        "3": 3
       }
     },
     "2026-02-09": {
@@ -1074,7 +1103,7 @@
         "2": 1
       },
       "uyeazz": {
-        "1": 0
+        "1": 1
       },
       "24xjz2": {
         "2": 2
@@ -1082,9 +1111,6 @@
       "6obv5q": {
         "2": 3,
         "3": 2
-      },
-      "rq0ftr": {
-        "1": 1
       }
     },
     "2026-02-16": {
@@ -1149,13 +1175,10 @@
         "1": 2
       },
       "uyeazz": {
-        "2": 0
+        "2": 2
       },
       "5yaf7u": {
         "3": 4
-      },
-      "rq0ftr": {
-        "2": 2
       }
     },
     "2026-03-09": {
@@ -1582,11 +1605,6 @@
       }
     },
     "2026-06-01": {
-      "rq0ftr": {
-        "1": 6,
-        "2": 2.5,
-        "3": 2.5
-      },
       "6obv5q": {
         "1": 1,
         "4": 1
@@ -1626,6 +1644,11 @@
       },
       "24xjz2": {
         "4": 3
+      },
+      "uyeazz": {
+        "1": 6,
+        "2": 2.5,
+        "3": 2.5
       }
     },
     "2026-06-08": {
@@ -1647,10 +1670,6 @@
         "1": 1,
         "4": 8
       },
-      "rq0ftr": {
-        "0": 1,
-        "1": 1
-      },
       "ss7tdy": {
         "3": 8
       },
@@ -1667,6 +1686,10 @@
       "24xjz2": {
         "1": 1.5,
         "2": 2
+      },
+      "uyeazz": {
+        "0": 1,
+        "1": 1
       }
     },
     "2026-06-15": {
@@ -2067,10 +2090,6 @@
         "1": 2,
         "4": 3
       },
-      "rq0ftr": {
-        "1": 1.5,
-        "2": 2
-      },
       "6obv5q": {
         "1": 1.5
       },
@@ -2091,6 +2110,10 @@
       },
       "895g4q": {
         "4": 1.5
+      },
+      "uyeazz": {
+        "1": 1.5,
+        "2": 2
       }
     },
     "2026-09-21": {
@@ -2114,20 +2137,20 @@
       "cheybp": {
         "1": 3
       },
-      "rq0ftr": {
-        "1": 2,
-        "2": 2,
-        "3": 2,
-        "4": 3,
-        "5": 5,
-        "6": 1.5
-      },
       "k0ofpa": {
         "2": 6,
         "3": 7
       },
       "mgvuby": {
         "4": 8
+      },
+      "uyeazz": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 3,
+        "5": 5,
+        "6": 1.5
       }
     },
     "2026-09-28": {
@@ -2183,12 +2206,6 @@
         "0": 5,
         "1": 0
       },
-      "rq0ftr": {
-        "1": 1,
-        "2": 8,
-        "3": 4,
-        "4": 2
-      },
       "e5vrpg": {
         "0": 1.5,
         "2": 1
@@ -2208,6 +2225,12 @@
       "ss7tdy": {
         "1": 8,
         "4": 5
+      },
+      "uyeazz": {
+        "1": 1,
+        "2": 8,
+        "3": 4,
+        "4": 2
       }
     },
     "2026-10-12": {
@@ -2217,10 +2240,6 @@
       },
       "mzgo04": {
         "1": 1
-      },
-      "rq0ftr": {
-        "0": 3,
-        "1": 5
       },
       "24xjz2": {
         "1": 1.5
@@ -2242,6 +2261,10 @@
       "tyw23c": {
         "3": 7,
         "4": 4
+      },
+      "uyeazz": {
+        "0": 3,
+        "1": 5
       }
     }
   },
@@ -2273,5 +2296,5 @@
       }
     }
   },
-  "savedAt": "2026-10-16T17:29:42.809Z"
+  "savedAt": "2026-10-17T11:52:17.720Z"
 }
