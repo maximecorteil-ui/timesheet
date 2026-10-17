@@ -21,6 +21,25 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-he
 .wnav:active{opacity:.7}
 .wlabel{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;line-height:1.5}
 .wlabel strong{display:block;font-size:13px;color:#eee}
+.wlabel{cursor:pointer;border-radius:8px}
+.wlabel:active{background:#2a2a2a}
+.wlabel .wcaret{color:var(--lime);font-size:10px;margin-left:4px}
+.jump-date{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.jump-date input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font-family:'Sora',sans-serif;font-size:14px;outline:none;background:#fafaf8;color:var(--text)}
+.jump-date button{background:var(--dark);color:white;border:none;border-radius:10px;padding:10px 14px;font-family:'Sora',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap}
+.jump-year{display:flex;align-items:center;justify-content:space-between;margin:4px 0 8px}
+.jump-year button{background:#f0eee8;border:none;border-radius:8px;padding:6px 12px;font-size:14px;cursor:pointer}
+.jump-year strong{font-family:'JetBrains Mono',monospace;font-size:14px}
+.jump-list{max-height:52vh;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+.jump-month{font-size:11px;font-weight:600;color:#aaa;margin:10px 0 4px;text-transform:capitalize}
+.jump-wk{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;cursor:pointer;font-size:13px;color:#333}
+.jump-wk:hover,.jump-wk:active{background:#f5f3ec}
+.jump-wk.cur{background:#f2fbdf}
+.jump-wk .wn{font-family:'JetBrains Mono',monospace;font-size:11px;color:#999;width:30px}
+.jump-wk .wd{flex:1}
+.jump-wk .wh{font-family:'JetBrains Mono',monospace;font-size:12px;color:#555}
+.jump-wk.empty{color:#bbb}
+.jump-wk.empty .wh{color:#ccc}
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:12px 0 0}
 .table-wrap::-webkit-scrollbar{display:none}
 table{border-collapse:collapse;min-width:100%;table-layout:fixed}
@@ -126,6 +145,45 @@ tr.add-proj-row td{padding:6px 12px;background:#fafaf7;border-bottom:2px solid v
 .mini-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 /* PDF options */
 .pdfopt-row{display:flex;flex-direction:column;gap:8px}
+.list-tools{display:flex;gap:8px;margin-bottom:10px}
+.list-tools input,.list-tools select{flex:1;min-width:0;padding:8px 12px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sora',sans-serif;font-size:13px;background:#fafaf8;outline:none;color:var(--text)}
+.list-tools select{flex:0 0 auto;max-width:46%;-webkit-appearance:none}
+.list-tools input:focus,.list-tools select:focus{border-color:var(--lime)}
+.list-count{font-size:11px;color:var(--muted);margin:-4px 0 8px}
+.list-empty{font-size:12px;color:var(--muted);padding:6px 0}
+.pill-h{font-family:'JetBrains Mono',monospace;font-size:10px;color:#999}
+.field-error{border-color:#e03 !important}
+.dup-warn{background:#fff4e5;border:1px solid #f0c48a;border-radius:10px;padding:10px 12px;font-size:12px;color:#7a4b00;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dup-warn button{background:var(--dark);color:white;border:none;border-radius:8px;padding:6px 10px;font-family:'Sora',sans-serif;font-size:12px;cursor:pointer;white-space:nowrap}
+.sel-btns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.sel-btns button{background:#f0eee8;border:none;border-radius:20px;padding:5px 12px;font-family:'Sora',sans-serif;font-size:12px;color:#555;cursor:pointer}
+.pdf-co-scroll{max-height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:0;border:1px solid #f0eee8;border-radius:10px;padding:0 10px}
+tr.entity-row td{background:#e4e0d4;font-size:11px;font-weight:700;padding:6px 12px;color:#333;letter-spacing:.3px;border-top:2px solid #d6d1c2}
+tr.entity-row td:not(:first-child){text-align:center;font-family:'JetBrains Mono',monospace;font-weight:600;color:#555;border-right:1px solid #d6d1c2}
+.ent-dot{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:6px;vertical-align:middle}
+.pill .pill-n{cursor:pointer}
+.pill .pill-ent{font-size:10px;color:#999}
+.pick-group{font-size:11px;font-weight:700;color:#888;margin:10px 0 2px;display:flex;align-items:center}
+.edit-row{display:flex;gap:8px;margin-bottom:10px}
+.edit-row select,.edit-row input{flex:1;min-width:0;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;background:#fafaf8;outline:none;color:var(--text);-webkit-appearance:none}
+.edit-row button{background:var(--dark);color:white;border:none;border-radius:10px;padding:10px 14px;font-family:'Sora',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap}
+.btn-ghost{width:100%;padding:12px;border-radius:12px;border:1.5px solid var(--border);background:none;font-family:'Sora',sans-serif;font-size:14px;cursor:pointer;color:#555;margin-top:6px}
+.edit-sep{border-top:1px dashed var(--border);margin:14px 0 10px}
+.pdf-ent-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:#222;padding:10px 0 6px;border-bottom:1px solid #ece9e0}
+.pdf-ent-item input{width:18px;height:18px;accent-color:var(--dark)}
+.pdf-co-item{padding-left:14px !important}
+.arch-sec{margin-top:14px;border-top:1px dashed var(--border);padding-top:10px}
+.arch-toggle{background:none;border:none;font-family:'Sora',sans-serif;font-size:12px;color:#888;cursor:pointer;padding:4px 0}
+.arch-list{display:none;flex-direction:column;gap:6px;margin-top:8px}
+.arch-list.open{display:flex}
+.arch-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#777;background:#f7f6f2;border-radius:10px;padding:7px 10px}
+.arch-item .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arch-item button{border:none;border-radius:8px;padding:5px 9px;font-family:'Sora',sans-serif;font-size:11px;cursor:pointer;background:#e9e7e0;color:#333;white-space:nowrap}
+.arch-item button.danger{background:none;color:#c33}
+.tag-arch{font-size:10px;color:#a07a2a;background:#fff4e5;border-radius:6px;padding:1px 6px;margin-left:4px}
+.pdf-co-h{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:#999}
+.hpd-row{display:flex;align-items:center;gap:8px;font-size:13px;color:#555}
+.hpd-row input{width:64px;border:1.5px solid var(--border);border-radius:8px;padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:13px;text-align:center;outline:none;background:#fafaf8}
 .pdfopt-row label{display:flex;align-items:center;gap:10px;font-size:13px;color:#555}
 .pdfopt-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--dark)}
 
@@ -161,7 +219,7 @@ tr.add-proj-row td{padding:6px 12px;background:#fafaf7;border-bottom:2px solid v
   </div>
   <div class="week-row">
     <button class="wnav" onclick="changeWeek(-1)">‹</button>
-    <div class="wlabel" id="weekLabel"></div>
+    <div class="wlabel" id="weekLabel" onclick="openJump()" title="Aller à une semaine"></div>
     <button class="wnav" onclick="changeWeek(1)">›</button>
   </div>
 </div>
@@ -209,27 +267,33 @@ tr.add-proj-row td{padding:6px 12px;background:#fafaf7;border-bottom:2px solid v
 <!-- ADD PROJECT MODAL -->
 <div class="overlay" id="addProjModal" onclick="closeBg(event,'addProjModal')">
   <div class="sheet">
-    <div class="sheet-title"><span>Ajouter un projet</span><button class="sheet-close" onclick="closeModal('addProjModal')">✕</button></div>
+    <div class="sheet-title"><span>Ajouter au tableau</span><button class="sheet-close" onclick="closeModal('addProjModal')">✕</button></div>
     <div class="quick-tabs" id="addProjTabs">
       <button class="qtab active" onclick="switchAddTab('pick')">Choisir</button>
-      <button class="qtab" onclick="switchAddTab('newproj')">+ Nouveau projet</button>
-      <button class="qtab" onclick="switchAddTab('newco')">+ Nouvelle société</button>
+      <button class="qtab" onclick="switchAddTab('newproj')">+ Sous-dossier</button>
+      <button class="qtab" onclick="switchAddTab('newco')">+ Dossier</button>
     </div>
-    <div id="tabPick"><div class="proj-pick-list" id="projPickList"></div></div>
+    <div id="tabPick">
+      <div class="list-tools"><input type="search" id="pickSearch" placeholder="Rechercher un dossier, une entité…" oninput="renderProjPickList()"></div>
+      <div class="proj-pick-list" id="projPickList"></div>
+    </div>
     <div id="tabNewProj" style="display:none">
-      <div class="qfield-label">Société</div>
+      <div class="qfield-label">Dossier</div>
       <select id="quickProjCo" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;background:#fafaf8;outline:none;color:var(--text);margin-bottom:10px;-webkit-appearance:none"></select>
-      <div class="qfield-label">Nom du projet</div>
-      <input type="text" id="quickProjName" placeholder="Ex: Clôture Q3…" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;background:#fafaf8;outline:none;color:var(--text);margin-bottom:10px" onkeydown="if(event.key==='Enter')quickCreateProject()">
+      <div class="qfield-label">Nom du sous-dossier</div>
+      <input type="text" id="quickProjName" placeholder="Ex: Général, M&amp;A, Clôture…" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;background:#fafaf8;outline:none;color:var(--text);margin-bottom:10px" onkeydown="if(event.key==='Enter')quickCreateProject()" oninput="this.classList.remove('field-error')">
       <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:13px;color:#555"><input type="checkbox" id="quickProjAddToWeek" checked style="width:18px;height:18px;accent-color:var(--dark)"> Ajouter à cette semaine</label>
-      <button class="btn-full" onclick="quickCreateProject()">Créer le projet</button>
+      <button class="btn-full" onclick="quickCreateProject()">Créer le sous-dossier</button>
     </div>
     <div id="tabNewCo" style="display:none">
-      <div class="qfield-label">Nom de la société</div>
-      <input type="text" id="quickCoName" placeholder="Ex: Nouveau Client SA…" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;background:#fafaf8;outline:none;color:var(--text);margin-bottom:10px" onkeydown="if(event.key==='Enter')quickCreateCompany()">
+      <div class="qfield-label">Entité</div>
+      <select id="quickCoEnt" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;background:#fafaf8;outline:none;color:var(--text);margin-bottom:10px;-webkit-appearance:none"></select>
+      <div class="qfield-label">Nom du dossier</div>
+      <input type="text" id="quickCoName" placeholder="Ex: Royen, Polomé…" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;background:#fafaf8;outline:none;color:var(--text);margin-bottom:10px" onkeydown="if(event.key==='Enter')quickCreateCompany()" oninput="this.classList.remove('field-error')">
       <div class="qfield-label">Couleur</div>
       <div class="color-pick-row" id="quickCoColors"></div>
-      <button class="btn-full" onclick="quickCreateCompany()">Créer la société</button>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:13px;color:#555"><input type="checkbox" id="quickCoWithGeneral" checked style="width:18px;height:18px;accent-color:var(--dark)"> Créer le sous-dossier « Général » et l'ajouter à cette semaine</label>
+      <button class="btn-full" onclick="quickCreateCompany()">Créer le dossier</button>
     </div>
   </div>
 </div>
@@ -259,30 +323,99 @@ tr.add-proj-row td{padding:6px 12px;background:#fafaf7;border-bottom:2px solid v
         <input type="file" id="importFile" accept=".csv,.xlsx,.xls" onchange="onFileSelect(event)">
         <div class="import-icon">📂</div>
         <div class="import-label">Sélectionner un fichier</div>
-        <div class="import-sub">CSV ou Excel · 2 colonnes : Société, Projet</div>
+        <div class="import-sub">3 colonnes : Entité, Dossier, Sous-dossier<br>ou 2 colonnes : Dossier, Sous-dossier</div>
       </div>
+      <div class="edit-row" style="align-items:center"><span style="font-size:12px;color:#777;flex:0 0 auto">Entité si 2 colonnes</span><select id="importEnt"></select></div>
       <div class="import-preview" id="importPreview"></div>
       <div class="import-result" id="importResult"></div>
       <button class="btn-import" id="btnImport" onclick="confirmImport()">Importer</button>
       <div class="import-dl-link"><a onclick="downloadTemplate()">↓ Télécharger le modèle CSV</a></div>
     </div>
     <div class="manage-section">
-      <div class="msec-title">Sociétés</div>
+      <div class="msec-title">Entités <span style="font-weight:400;text-transform:none;letter-spacing:0">· pour qui tu prestes</span></div>
       <div class="minput-row">
-        <input type="text" id="newCoName" placeholder="Nom…" onkeydown="if(event.key==='Enter')addCompany()">
+        <input type="text" id="newEntName" placeholder="Nom de l'entité…" onkeydown="if(event.key==='Enter')addEntity()" oninput="this.classList.remove('field-error')">
+        <button class="madd-btn" onclick="addEntity()">+</button>
+      </div>
+      <div class="pill-list" id="entPills"></div>
+    </div>
+    <div class="manage-section">
+      <div class="msec-title">Dossiers</div>
+      <div class="minput-row">
+        <select id="newCoEnt" style="-webkit-appearance:none"></select>
+        <input type="text" id="newCoName" placeholder="Nom du dossier…" onkeydown="if(event.key==='Enter')addCompany()" oninput="this.classList.remove('field-error')">
         <button class="madd-btn" onclick="addCompany()">+</button>
       </div>
+      <div id="dupWarn"></div>
+      <div class="list-tools">
+        <input type="search" id="coSearch" placeholder="Rechercher…" oninput="renderManage()">
+        <select id="coEntFilter" onchange="renderManage()"></select>
+        <select id="coSort" onchange="saveSort();renderManage()">
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+          <option value="recent">Récents</option>
+          <option value="hours">Heures</option>
+        </select>
+      </div>
+      <div class="list-count" id="coCount"></div>
       <div class="pill-list" id="compPills"></div>
     </div>
     <div class="manage-section">
-      <div class="msec-title">Projets</div>
+      <div class="msec-title">Sous-dossiers</div>
       <div class="minput-row">
         <select id="newProjCo" style="-webkit-appearance:none"></select>
-        <input type="text" id="newProjName" placeholder="Nom…" onkeydown="if(event.key==='Enter')addProject()">
+        <input type="text" id="newProjName" placeholder="Nom…" onkeydown="if(event.key==='Enter')addProject()" oninput="this.classList.remove('field-error')">
         <button class="madd-btn" onclick="addProject()">+</button>
       </div>
+      <div class="list-tools">
+        <input type="search" id="projSearch" placeholder="Rechercher…" oninput="renderManage()">
+        <select id="projSort" onchange="saveSort();renderManage()">
+          <option value="az">Dossier A → Z</option>
+          <option value="name">Nom A → Z</option>
+          <option value="recent">Récents</option>
+          <option value="hours">Heures</option>
+        </select>
+      </div>
+      <div class="list-count" id="projCount"></div>
       <div class="pill-list" id="projPills"></div>
+      <div class="arch-sec" id="archSec"></div>
     </div>
+    <div style="font-size:11px;color:#aaa;text-align:center;margin-top:6px">Touche un nom pour le renommer, le déplacer ou le fusionner · × pour archiver</div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="overlay" id="editModal" onclick="closeBg(event,'editModal')">
+  <div class="sheet">
+    <div class="sheet-title"><span id="editTitle">Modifier</span><button class="sheet-close" onclick="closeModal('editModal')">✕</button></div>
+    <div class="qfield-label">Nom</div>
+    <div class="edit-row"><input type="text" id="editName" oninput="this.classList.remove('field-error')" onkeydown="if(event.key==='Enter')saveEdit()"></div>
+    <div id="editParentWrap"><div class="qfield-label" id="editParentLabel">Entité</div><div class="edit-row"><select id="editParent"></select></div></div>
+    <div id="editColorWrap"><div class="qfield-label">Couleur</div><div class="color-pick-row" id="editColors"></div></div>
+    <button class="btn-full" onclick="saveEdit()">Enregistrer</button>
+    <div class="edit-sep"></div>
+    <div id="editMergeWrap"><div class="qfield-label" id="editMergeLabel">Fusionner dans</div>
+      <div class="edit-row"><select id="editMergeTarget"></select><button onclick="doMerge()">Fusionner</button></div>
+    </div>
+    <button class="btn-ghost" id="editArchiveBtn" onclick="editArchive()">Archiver</button>
+  </div>
+</div>
+
+<!-- JUMP MODAL -->
+<div class="overlay" id="jumpModal" onclick="closeBg(event,'jumpModal')">
+  <div class="sheet" style="max-height:92vh">
+    <div class="sheet-title"><span>Aller à une semaine</span><button class="sheet-close" onclick="closeModal('jumpModal')">✕</button></div>
+    <div class="jump-date">
+      <input type="date" id="jumpDate" onchange="jumpToDate(this.value)">
+      <button onclick="jumpToDate(document.getElementById('jumpDate').value)">Aller</button>
+    </div>
+    <div class="jump-year">
+      <button onclick="jumpYear(-1)">‹</button>
+      <strong id="jumpYearLabel"></strong>
+      <button onclick="jumpYear(1)">›</button>
+    </div>
+    <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:#777;margin-bottom:6px"><input type="checkbox" id="jumpOnlyFilled" checked onchange="renderJump()" style="accent-color:var(--dark)"> Seulement les semaines encodées</label>
+    <div class="jump-list" id="jumpList"></div>
   </div>
 </div>
 
@@ -291,7 +424,16 @@ tr.add-proj-row td{padding:6px 12px;background:#fafaf7;border-bottom:2px solid v
   <div class="sheet" style="max-height:92vh">
     <div class="sheet-title"><span>📄 Exporter PDF</span><button class="sheet-close" onclick="closeModal('pdfModal')">✕</button></div>
     <div style="display:flex;flex-direction:column;gap:14px">
-      <div><div class="qfield-label">Sociétés</div><div id="pdfCoList" style="display:flex;flex-direction:column;gap:6px"></div></div>
+      <div>
+        <div class="qfield-label">Dossiers <span id="pdfCoCount" style="font-weight:400;text-transform:none;letter-spacing:0;color:#bbb"></span></div>
+        <div class="list-tools"><input type="search" id="pdfCoSearch" placeholder="Rechercher un dossier ou une entité…" oninput="filterPdfCos()"></div>
+        <div class="sel-btns">
+          <button type="button" onclick="pdfSelect('all')">Tout cocher</button>
+          <button type="button" onclick="pdfSelect('none')">Tout décocher</button>
+          <button type="button" onclick="pdfSelect('withHours')">Avec heures sur la période</button>
+        </div>
+        <div id="pdfCoList" class="pdf-co-scroll"></div>
+      </div>
       <div>
         <div class="qfield-label">Période</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
@@ -305,7 +447,9 @@ tr.add-proj-row td{padding:6px 12px;background:#fafaf7;border-bottom:2px solid v
         <div class="pdfopt-row">
           <label><input type="checkbox" id="pdfOptDetail" checked> Détail jour par jour</label>
           <label><input type="checkbox" id="pdfOptComments" checked> Inclure les commentaires</label>
-          <label><input type="checkbox" id="pdfOptSeparate"> Un document par société</label>
+          <div class="hpd-row">Documents : <select id="pdfSplit" style="border:1.5px solid var(--border);border-radius:8px;padding:6px 8px;font-family:'Sora',sans-serif;font-size:13px;background:#fafaf8;outline:none"><option value="one">Un seul</option><option value="ent">Un par entité</option><option value="co">Un par dossier</option></select></div>
+          <label><input type="checkbox" id="pdfOptDays" checked> Afficher l'équivalent en jours</label>
+          <div class="hpd-row">1 jour = <input type="number" id="pdfHpd" min="1" max="24" step="0.5" inputmode="decimal"> heures</div>
         </div>
       </div>
       <div>
@@ -329,6 +473,35 @@ function uid(){ return Math.random().toString(36).slice(2,8); }
 function load(k,def){ try{ var v=localStorage.getItem(k); return v ? JSON.parse(v) : def; }catch(e){ return def; } }
 function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function cap(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : ''; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+// Nom normalisé pour détecter les doublons : casse, accents, espaces et ponctuation ignorés
+function normName(s){ return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); }
+function findCompanyByName(name, exceptId, eid){ var n=normName(name); return companies.find(function(c){ return c.id!==exceptId && (!eid || c.eid===eid) && normName(c.name)===n; }); }
+function findProjectByName(cid, name, exceptId){ var n=normName(name); return projects.find(function(p){ return p.cid===cid && p.id!==exceptId && normName(p.name)===n; }); }
+function sortByName(a,b){ return a.localeCompare(b,'fr',{sensitivity:'base',numeric:true}); }
+// Total d'heures par projet, toutes semaines confondues
+function projectHoursAll(pid){ var t=0; Object.keys(hours).forEach(function(wk){ var r=hours[wk]&&hours[wk][pid]; if(r) Object.keys(r).forEach(function(k){ t+=parseFloat(r[k])||0; }); }); return t; }
+function companyHoursAll(cid){ return projects.filter(function(p){return p.cid===cid;}).reduce(function(t,p){ return t+projectHoursAll(p.id); },0); }
+function fmtNum(n){ return (Math.round(n*100)/100).toLocaleString('fr-BE',{maximumFractionDigits:2}); }
+function fmtDays(h){ var hpd=getHpd(); return fmtNum(h/hpd)+' j'; }
+function getHpd(){ var v=parseFloat(load('ts_hpd',8)); return v>0?v:8; }
+function coById(id){ return companies.find(function(c){return c.id===id;}); }
+function isProjArchived(p){ if(!p) return true; var co=coById(p.cid); return !!(p.archived || (co && co.archived)); }
+function activeCompanies(){ return companies.filter(function(c){return !c.archived;}); }
+// Retire un projet archivé des semaines à venir (à partir de cette semaine), sauf s'il y a déjà des heures/commentaires
+function dropFromUpcomingWeeks(pids){
+  var from=dateKey(getMonday(new Date()));
+  Object.keys(activeProjects).forEach(function(wk){
+    if(wk<from) return;
+    activeProjects[wk]=activeProjects[wk].filter(function(pid){
+      if(pids.indexOf(pid)<0) return true;
+      var h=hours[wk]&&hours[wk][pid], c=comments[wk]&&comments[wk][pid];
+      var has=(h&&Object.keys(h).some(function(k){return parseFloat(h[k])>0;}))||(c&&Object.keys(c).some(function(k){return c[k];}));
+      return has;
+    });
+  });
+}
+function fieldError(inp,msg){ inp.classList.add('field-error'); inp.focus(); toast(msg); }
 
 // ═══════════════════════════════════════════════════════════════
 // DATE HELPERS
@@ -383,6 +556,80 @@ var pendingHours = null;
 var importParsed = null;
 var quickCoColor = COLORS[0];
 var addProjFilterCid = null;
+var listSorts = load('ts_listSorts', {co:'az', proj:'az'});
+var entities = load('ts_entities', []);
+var ENT_COLORS = ['#1a2d4a','#b8f03a','#f0a83a','#6a8af7','#f76a8a','#3ad4f0'];
+function entById(id){ return entities.find(function(e){return e.id===id;}); }
+function entIndex(id){ var i=entities.findIndex(function(e){return e.id===id;}); return i<0?999:i; }
+function entName(id){ var e=entById(id); return e?e.name:'?'; }
+function getOrCreateEntity(name,color){
+  var n=normName(name), e=entities.find(function(x){return normName(x.name)===n;});
+  if(!e){ e={id:'e'+uid(),name:name,color:color||ENT_COLORS[entities.length%ENT_COLORS.length]}; entities.push(e); }
+  return e;
+}
+function levenshtein(a,b){
+  var m=[],i,j; for(i=0;i<=b.length;i++) m[i]=[i]; for(j=0;j<=a.length;j++) m[0][j]=j;
+  for(i=1;i<=b.length;i++) for(j=1;j<=a.length;j++) m[i][j]=b[i-1]===a[j-1]?m[i-1][j-1]:Math.min(m[i-1][j-1]+1,m[i][j-1]+1,m[i-1][j]+1);
+  return m[b.length][a.length];
+}
+// Déplace un sous-dossier vers un dossier (créé si besoin) ; fusionne s'il y a déjà un sous-dossier du même nom
+function moveProjToDossier(p, dossierName, eid, newName, color){
+  var n=normName(dossierName);
+  var d=companies.find(function(c){return c.eid===eid && normName(c.name)===n && c.id!==p.cid;})
+     || companies.find(function(c){return !c.eid && normName(c.name)===n && c.id!==p.cid;});
+  if(d && !d.eid) d.eid=eid;
+  if(!d){ d={id:uid(),name:dossierName,color:color||COLORS[companies.length%COLORS.length],eid:eid}; companies.push(d); }
+  var same=findProjectByName(d.id,newName,p.id);
+  if(same){ mergeProjectInto(p.id,same.id); return; }
+  p.cid=d.id; p.name=newName;
+}
+// Migration vers Entité › Dossier › Sous-dossier (ne touche que les dossiers sans entité)
+function ensureEntities(skipPush){
+  var todo=companies.filter(function(c){ return !(c.eid && entById(c.eid)); });
+  if(!todo.length && entities.length) return false;
+  var GM=getOrCreateEntity('Gehlen Management','#1a2d4a'), MACO=getOrCreateEntity('MaCo','#b8f03a'), IND=getOrCreateEntity('Indépendant','#f0a83a');
+  // 1. Affectation simple
+  todo.forEach(function(c){
+    var n=normName(c.name);
+    if(n==='maco interne'){ c.eid=MACO.id; c.name='Interne'; }
+    else if(n==='internal'){ c.eid=GM.id; c.name='Interne'; }
+    else if(n==='polome'||n==='tennis club de herve'||n==='deveux collin'){ c.eid=MACO.id; }
+    else if(n==='dome spirou'||n==='spirou'){ c.eid=IND.id; }
+    else if(n==='maco dossiers'||n==='gehlen management'){ /* éclaté à l'étape 2 */ }
+    else c.eid=GM.id;
+  });
+  // 2. « MaCo - Dossiers » et « Gehlen Management » : chaque projet devient un dossier
+  todo.forEach(function(c){
+    var n=normName(c.name), eid;
+    if(n==='maco dossiers') eid=MACO.id; else if(n==='gehlen management') eid=GM.id; else return;
+    projects.filter(function(p){return p.cid===c.id;}).forEach(function(p){
+      var pn=normName(p.name);
+      if(pn==='general'||pn==='generel') moveProjToDossier(p,'Divers',eid,'Général',c.color);
+      else moveProjToDossier(p,p.name,eid,'Général',c.color);
+    });
+    if(projects.some(function(p){return p.cid===c.id;})) c.eid=eid;
+    else companies=companies.filter(function(x){return x.id!==c.id;});
+  });
+  // 3. Dossiers en double dans la même entité → fusion
+  var seen={};
+  companies.slice().forEach(function(c){
+    var k=c.eid+'|'+normName(c.name);
+    if(seen[k] && seen[k]!==c.id) mergeDossierInto(c.id,seen[k]); else seen[k]=c.id;
+  });
+  // 4. Sous-dossiers quasi identiques (faute de frappe) dans un même dossier → fusion
+  companies.forEach(function(c){
+    var ps=projects.filter(function(p){return p.cid===c.id;});
+    for(var i=0;i<ps.length;i++) for(var j=i+1;j<ps.length;j++){
+      var a=normName(ps[i].name), b=normName(ps[j].name);
+      if(a.length>=6 && !/\d/.test(a+b) && levenshtein(a,b)<=1 && projects.indexOf(ps[j])>=0 && projects.indexOf(ps[i])>=0){
+        if(a!=='general' && b==='general') mergeProjectInto(ps[i].id,ps[j].id); else mergeProjectInto(ps[j].id,ps[i].id);
+      }
+    }
+  });
+  if(skipPush){ save('ts_entities',entities); save('ts_companies',companies); save('ts_projects',projects); save('ts_activeProjects',activeProjects); save('ts_hours',hours); save('ts_comments',comments); }
+  else persist();
+  return true;
+}
 
 
 // ═══════════════════════════════════════════════════════════════
@@ -427,7 +674,7 @@ function saveToken() {
   localStorage.setItem('gh_pat', t);
   document.getElementById('tokenModal').classList.remove('open');
   toast('Token sauvegardé ✓');
-  pullFromGitHub(function(){ render(); });
+  pullFromGitHub(function(){ ensureEntities(); render(); });
 }
 
 function skipToken() {
@@ -444,6 +691,7 @@ function pushToGitHub() {
   if (!getToken()) return;
   setSyncStatus('syncing');
   var data = {
+    entities: entities,
     companies: companies,
     projects: projects,
     activeProjects: activeProjects,
@@ -489,6 +737,7 @@ function pullFromGitHub(callback) {
     currentSha = res.sha;
     var json = decodeURIComponent(escape(atob(res.content.replace(/\n/g,''))));
     var d = JSON.parse(json);
+    if (d.entities && d.entities.length) { entities = d.entities; save('ts_entities', entities); }
     if (d.companies && d.companies.length) { companies = d.companies; save('ts_companies', companies); }
     if (d.projects  && d.projects.length)  { projects  = d.projects;  save('ts_projects',  projects); }
     if (d.activeProjects) { activeProjects = d.activeProjects; save('ts_activeProjects', activeProjects); }
@@ -506,6 +755,7 @@ function pullFromGitHub(callback) {
 }
 
 function persist() {
+  save('ts_entities', entities);
   save('ts_companies', companies);
   save('ts_projects',  projects);
   save('ts_activeProjects', activeProjects);
@@ -556,7 +806,8 @@ function getRecentProjects(n) {
     var k = dateKey(d);
     var list = activeProjects[k];
     if (list) list.forEach(function(pid) {
-      if (!seen[pid] && projects.find(function(p){return p.id===pid;})) {
+      var pp = projects.find(function(p){return p.id===pid;});
+      if (!seen[pid] && pp && !isProjArchived(pp)) {
         seen[pid] = true; ordered.push(pid);
       }
     });
@@ -593,7 +844,7 @@ function renderHeader() {
   var today = new Date().toDateString();
   var a = days[0].toLocaleDateString('fr-BE',{day:'2-digit',month:'long'});
   var b = days[6].toLocaleDateString('fr-BE',{day:'2-digit',month:'long',year:'numeric'});
-  document.getElementById('weekLabel').innerHTML = '<strong>S'+weekNum(currentMonday)+'</strong>'+a+' – '+b;
+  document.getElementById('weekLabel').innerHTML = '<strong>S'+weekNum(currentMonday)+'<span class="wcaret">▾</span></strong>'+a+' – '+b;
 
   var thead = document.getElementById('tableHead');
   thead.innerHTML = '';
@@ -626,10 +877,26 @@ function renderBody() {
     grouped[p.cid].push(p);
   });
 
+  coOrder.sort(function(a,b){ var ca=coById(a)||{}, cb=coById(b)||{}; return entIndex(ca.eid)-entIndex(cb.eid); });
+  var lastEid = null;
   coOrder.forEach(function(cid) {
     var co = companies.find(function(c){return c.id===cid;});
     if (!co) return;
     var projs = grouped[cid];
+
+    // Entity header row
+    if (co.eid !== lastEid) {
+      lastEid = co.eid;
+      var ent = entById(co.eid) || {name:'Sans entité', color:'#ccc'};
+      var entPids = active.filter(function(pid){ var pp=projects.find(function(x){return x.id===pid;}); var cc=pp&&coById(pp.cid); return cc && cc.eid===co.eid; });
+      var eTr = el('tr','entity-row');
+      var eTd0 = el('td'); var eDot = el('span','ent-dot'); eDot.style.background = ent.color;
+      eTd0.appendChild(eDot); eTd0.appendChild(document.createTextNode(ent.name)); eTr.appendChild(eTd0);
+      days.forEach(function(_,i){ var t=entPids.reduce(function(sm,pid){return sm+getH(pid,i);},0); var td=el('td'); td.textContent=t>0?fmtNum(t):''; eTr.appendChild(td); });
+      var eTot = entPids.reduce(function(sm,pid){return sm+rowTotal(pid);},0);
+      var eTdT = el('td'); eTdT.textContent = eTot>0?fmtNum(eTot)+'h':''; eTr.appendChild(eTdT);
+      tbody.appendChild(eTr);
+    }
 
     // Company header row
     var coTr = el('tr','company-row');
@@ -704,7 +971,7 @@ function renderBody() {
     var addTr = el('tr','add-proj-row');
     var addTd = el('td'); addTd.colSpan=9;
     var addBtn = el('button','add-proj-btn');
-    addBtn.textContent = '＋ Ajouter un projet · '+co.name;
+    addBtn.textContent = '＋ Ajouter un sous-dossier · '+co.name;
     (function(cid){ addBtn.onclick = function(){ openAddProj(cid); }; })(cid);
     addTd.appendChild(addBtn); addTr.appendChild(addTd);
     tbody.appendChild(addTr);
@@ -716,8 +983,8 @@ function renderBody() {
     var td = el('td'); td.colSpan=9;
     td.style.cssText='text-align:center;padding:40px 20px;color:#bbb;font-size:14px;background:white;line-height:2';
     td.innerHTML = companies.length===0
-      ? 'Bienvenue 👋<br><span style="font-size:13px">Commence par ⚙ Gérer pour ajouter tes sociétés et projets.</span>'
-      : 'Aucun projet cette semaine.';
+      ? 'Bienvenue 👋<br><span style="font-size:13px">Commence par ⚙ Gérer pour ajouter tes entités et dossiers.</span>'
+      : 'Aucun dossier cette semaine.';
     tr.appendChild(td); tbody.appendChild(tr);
   }
 
@@ -727,7 +994,7 @@ function renderBody() {
     var addTd2 = el('td'); addTd2.colSpan=9;
     addTd2.style.cssText='padding:8px 12px;background:var(--bg)';
     var addBtn2 = el('button','add-proj-btn add-proj-global');
-    addBtn2.textContent = '＋ Ajouter un projet au tableau';
+    addBtn2.textContent = '＋ Ajouter un dossier au tableau';
     addBtn2.onclick = function(){ openAddProj(null); };
     addTd2.appendChild(addBtn2); addTr2.appendChild(addTd2);
     tbody.appendChild(addTr2);
@@ -756,6 +1023,38 @@ function changeWeek(dir) {
   render();
 }
 function goToday() { currentMonday = getMonday(new Date()); render(); }
+
+// ── Aller directement à une semaine ──
+var jumpYearVal = new Date().getFullYear();
+function weekTotalAll(wk){ var t=0, w=hours[wk]; if(!w) return 0; Object.keys(w).forEach(function(pid){ var r=w[pid]; Object.keys(r).forEach(function(k){ t+=parseFloat(r[k])||0; }); }); return t; }
+function openJump(){
+  jumpYearVal=currentMonday.getFullYear();
+  document.getElementById('jumpDate').value=dateKey(currentMonday);
+  renderJump(); document.getElementById('jumpModal').classList.add('open');
+  setTimeout(function(){ var c=document.querySelector('.jump-wk.cur'); if(c) c.scrollIntoView({block:'center'}); },60);
+}
+function jumpYear(d){ jumpYearVal+=d; renderJump(); }
+function jumpToDate(v){ if(!v) return; currentMonday=getMonday(new Date(v+'T00:00:00')); closeModal('jumpModal'); render(); }
+function renderJump(){
+  document.getElementById('jumpYearLabel').textContent=jumpYearVal;
+  var only=document.getElementById('jumpOnlyFilled').checked;
+  var cur=dateKey(currentMonday), todayMon=dateKey(getMonday(new Date()));
+  // Toutes les semaines dont le lundi tombe dans l'année, de la plus récente à la plus ancienne
+  var m=getMonday(new Date(jumpYearVal,11,31)), weeks=[];
+  while(m.getFullYear()===jumpYearVal){ weeks.push(m); m=addDays(m,-7); }
+  var h='', lastMonth='', shown=0;
+  weeks.forEach(function(mon){
+    var wk=dateKey(mon), tot=weekTotalAll(wk);
+    if(wk>todayMon && !tot) return;            // pas de semaines futures vides
+    if(only && !tot && wk!==cur && wk!==todayMon) return;
+    var month=mon.toLocaleDateString('fr-BE',{month:'long'});
+    if(month!==lastMonth){ h+='<div class="jump-month">'+month+'</div>'; lastMonth=month; }
+    var a=mon.toLocaleDateString('fr-BE',{day:'2-digit',month:'short'}), b=addDays(mon,6).toLocaleDateString('fr-BE',{day:'2-digit',month:'short'});
+    h+='<div class="jump-wk'+(wk===cur?' cur':'')+(tot?'':' empty')+'" onclick="jumpToDate(\''+wk+'\')"><span class="wn">S'+weekNum(mon)+'</span><span class="wd">'+a+' – '+b+(wk===todayMon?' · cette semaine':'')+'</span><span class="wh">'+(tot?fmtNum(tot)+'h':'—')+'</span></div>';
+    shown++;
+  });
+  document.getElementById('jumpList').innerHTML = shown ? h : '<div class="list-empty">Aucune semaine encodée en '+jumpYearVal+'. Décoche le filtre pour voir toutes les semaines.</div>';
+}
 
 // ═══════════════════════════════════════════════════════════════
 // HOURS MODAL
@@ -811,6 +1110,7 @@ function confirmComment() {
 // ═══════════════════════════════════════════════════════════════
 function openAddProj(filterCid) {
   addProjFilterCid = filterCid;
+  document.getElementById('pickSearch').value='';
   switchAddTab('pick');
   document.getElementById('addProjModal').classList.add('open');
 }
@@ -822,18 +1122,33 @@ function switchAddTab(tab) {
   if(tab==='newproj') renderQuickProjCoSelect();
   if(tab==='newco') renderQuickCoColors();
 }
+// Options <select> des dossiers groupés par entité
+function dossierOptions(activeOnly){
+  return entities.map(function(e){
+    var cos=companies.filter(function(c){ return c.eid===e.id && (!activeOnly || !c.archived); }).sort(function(a,b){return sortByName(a.name,b.name);});
+    if(!cos.length) return '';
+    return '<optgroup label="'+esc(e.name)+'">'+cos.map(function(c){return '<option value="'+c.id+'">'+esc(c.name)+'</option>';}).join('')+'</optgroup>';
+  }).join('');
+}
+function entityOptions(){ return entities.map(function(e){return '<option value="'+e.id+'">'+esc(e.name)+'</option>';}).join(''); }
 function renderProjPickList() {
-  var active = getActive();
-  var available = projects.filter(function(p){ return !active.includes(p.id) && (!addProjFilterCid || p.cid===addProjFilterCid); });
+  var active = getActive(), q = normName(document.getElementById('pickSearch').value);
+  var available = projects.filter(function(p){
+    if(active.includes(p.id) || isProjArchived(p) || (addProjFilterCid && p.cid!==addProjFilterCid)) return false;
+    if(!q) return true; var co=coById(p.cid);
+    return (normName(p.name)+' '+normName(co?co.name:'')+' '+normName(co?entName(co.eid):'')).indexOf(q)>=0;
+  });
   var list = document.getElementById('projPickList');
-  if (!available.length) { list.innerHTML='<div class="empty-pick">Tous les projets sont déjà dans le tableau.<br><br>Crée un nouveau projet via l\'onglet ci-dessus.</div>'; return; }
-  list.innerHTML = '';
+  if (!available.length) { list.innerHTML='<div class="empty-pick">'+(q?'Aucun résultat.':'Tout est déjà dans le tableau.')+'<br><br>Crée un dossier ou un sous-dossier via les onglets ci-dessus.</div>'; return; }
+  available.sort(function(a,b){ var ca=coById(a.cid)||{}, cb=coById(b.cid)||{}; return (entIndex(ca.eid)-entIndex(cb.eid)) || sortByName(ca.name||'',cb.name||'') || sortByName(a.name,b.name); });
+  list.innerHTML = ''; var lastE=null;
   available.forEach(function(p) {
-    var co=companies.find(function(c){return c.id===p.cid;});
+    var co=coById(p.cid);
+    if(co && co.eid!==lastE){ lastE=co.eid; var e=entById(co.eid)||{name:'?',color:'#ccc'}; var g=document.createElement('div'); g.className='pick-group'; g.innerHTML='<span class="ent-dot" style="background:'+e.color+'"></span>'+esc(e.name); list.appendChild(g); }
     var div=document.createElement('div'); div.className='proj-pick-item';
     var dot=document.createElement('span'); dot.className='cdot'; dot.style.background=co?co.color:'#ccc';
-    var name=document.createElement('span'); name.textContent=p.name;
-    var sub=document.createElement('span'); sub.className='proj-pick-sub'; sub.textContent=co?co.name:'';
+    var name=document.createElement('span'); name.textContent=(co?co.name:'?');
+    var sub=document.createElement('span'); sub.className='proj-pick-sub'; sub.textContent=p.name;
     div.appendChild(dot); div.appendChild(name); div.appendChild(sub);
     (function(pid){ div.onclick=function(){ pickProject(pid); }; })(p.id);
     list.appendChild(div);
@@ -841,12 +1156,14 @@ function renderProjPickList() {
 }
 function renderQuickProjCoSelect() {
   var sel = document.getElementById('quickProjCo');
-  sel.innerHTML = companies.map(function(c){return '<option value="'+c.id+'">'+c.name+'</option>';}).join('');
+  sel.innerHTML = dossierOptions(true);
   if (addProjFilterCid) sel.value = addProjFilterCid;
-  document.getElementById('quickProjName').value = '';
-  setTimeout(function(){ document.getElementById('quickProjName').focus(); },200);
+  var inp=document.getElementById('quickProjName'); inp.value = ''; inp.classList.remove('field-error');
+  setTimeout(function(){ inp.focus(); },200);
 }
 function renderQuickCoColors() {
+  var es=document.getElementById('quickCoEnt'); es.innerHTML=entityOptions();
+  var fc=addProjFilterCid&&coById(addProjFilterCid); if(fc) es.value=fc.eid;
   quickCoColor = COLORS[companies.length % COLORS.length];
   var ccDiv=document.getElementById('quickCoColors'); ccDiv.innerHTML='';
   COLORS.forEach(function(c){
@@ -856,83 +1173,337 @@ function renderQuickCoColors() {
     (function(col){ sw.onclick=function(){ selectQuickCoColor(col); }; })(c);
     ccDiv.appendChild(sw);
   });
-  document.getElementById('quickCoName').value = '';
-  setTimeout(function(){ document.getElementById('quickCoName').focus(); },200);
+  var inp=document.getElementById('quickCoName'); inp.value = ''; inp.classList.remove('field-error');
+  setTimeout(function(){ inp.focus(); },200);
 }
 function selectQuickCoColor(c) {
   quickCoColor = c;
-  document.querySelectorAll('.color-swatch').forEach(function(el){ el.classList.toggle('selected', el.style.background===c||el.style.backgroundColor===c); });
+  document.querySelectorAll('#quickCoColors .color-swatch').forEach(function(el){ el.classList.toggle('selected', el.style.background===c||el.style.backgroundColor===c); });
 }
 function pickProject(pid) {
   var active=getActive(); if(!active.includes(pid)){ active.push(pid); setActive(active); }
-  closeModal('addProjModal'); render(); toast('Projet ajouté ✓');
+  closeModal('addProjModal'); render(); toast('Ajouté ✓');
 }
 function quickCreateProject() {
   var name=document.getElementById('quickProjName').value.trim();
   var cid=document.getElementById('quickProjCo').value;
   if(!name||!cid){ document.getElementById('quickProjName').focus(); return; }
+  var dupP=findProjectByName(cid,name);
+  if(dupP){
+    if(dupP.archived && confirm('Le sous-dossier « '+dupP.name+' » est archivé. Le restaurer ?')){ restoreProject(dupP.id); if(document.getElementById('quickProjAddToWeek').checked){ var a0=getActive(); if(a0.indexOf(dupP.id)<0){ a0.push(dupP.id); setActive(a0);} } closeModal('addProjModal'); render(); return; }
+    fieldError(document.getElementById('quickProjName'),'⚠ Ce sous-dossier existe déjà dans ce dossier'); return;
+  }
   var pid=uid(); projects.push({id:pid,cid:cid,name:name}); persist();
   if(document.getElementById('quickProjAddToWeek').checked){ var a=getActive(); a.push(pid); setActive(a); }
-  closeModal('addProjModal'); render(); toast('Projet créé ✓');
+  closeModal('addProjModal'); render(); toast('Sous-dossier créé ✓');
 }
 function quickCreateCompany() {
-  var name=document.getElementById('quickCoName').value.trim();
-  if(!name){ document.getElementById('quickCoName').focus(); return; }
-  var cid=uid(); companies.push({id:cid,name:name,color:quickCoColor}); persist();
-  addProjFilterCid=cid; renderQuickProjCoSelect(); document.getElementById('quickProjCo').value=cid;
-  switchAddTab('newproj'); toast('Société créée ✓'); render();
+  var name=document.getElementById('quickCoName').value.trim(), eid=document.getElementById('quickCoEnt').value;
+  if(!name||!eid){ document.getElementById('quickCoName').focus(); return; }
+  var dupC=findCompanyByName(name,null,eid);
+  if(dupC){
+    if(dupC.archived && confirm('« '+dupC.name+' » est archivé. Le restaurer ?')){ restoreCompany(dupC.id); addProjFilterCid=dupC.id; switchAddTab('pick'); return; }
+    fieldError(document.getElementById('quickCoName'),'⚠ « '+dupC.name+' » existe déjà chez '+entName(eid)); return;
+  }
+  var cid=uid(); companies.push({id:cid,name:name,color:quickCoColor,eid:eid});
+  if(document.getElementById('quickCoWithGeneral').checked){
+    var pid=uid(); projects.push({id:pid,cid:cid,name:'Général'}); persist();
+    var a=getActive(); a.push(pid); setActive(a);
+    closeModal('addProjModal'); render(); toast('Dossier créé ✓'); return;
+  }
+  persist(); addProjFilterCid=cid; switchAddTab('newproj'); document.getElementById('quickProjCo').value=cid; toast('Dossier créé ✓'); render();
 }
 
 // ═══════════════════════════════════════════════════════════════
 // MANAGE MODAL
 // ═══════════════════════════════════════════════════════════════
-function openManage() { renderManage(); document.getElementById('manageModal').classList.add('open'); }
+function openManage() {
+  document.getElementById('coSort').value=listSorts.co||'az';
+  document.getElementById('projSort').value=listSorts.proj||'az';
+  document.getElementById('coSearch').value=''; document.getElementById('projSearch').value='';
+  document.getElementById('coEntFilter').innerHTML='<option value="">Toutes</option>'+entityOptions();
+  document.getElementById('importEnt').innerHTML=entityOptions();
+  var ne=document.getElementById('newCoEnt'), keep=ne.value; ne.innerHTML=entityOptions(); if(keep) ne.value=keep;
+  renderManage(); document.getElementById('manageModal').classList.add('open');
+}
+function saveSort(){ listSorts={co:document.getElementById('coSort').value, proj:document.getElementById('projSort').value}; save('ts_listSorts',listSorts); }
+function sortedCompanies(mode){
+  var arr=companies.map(function(c,i){ return {c:c,i:i,h:mode==='hours'?companyHoursAll(c.id):0}; });
+  arr.sort(function(a,b){
+    if(mode==='za') return sortByName(b.c.name,a.c.name);
+    if(mode==='recent') return b.i-a.i;
+    if(mode==='hours') return (b.h-a.h)||sortByName(a.c.name,b.c.name);
+    return sortByName(a.c.name,b.c.name);
+  });
+  return arr;
+}
+function findDuplicateGroups(){
+  var groups={};
+  companies.forEach(function(c){ var k=c.eid+'|'+normName(c.name); (groups[k]=groups[k]||[]).push(c); });
+  return Object.keys(groups).map(function(k){return groups[k];}).filter(function(g){return g.length>1;});
+}
+function makePill(color, label, sub, onName, onX, square){
+  var div=document.createElement('div'); div.className='pill';
+  var dot=document.createElement('span'); dot.className=square?'ent-dot':'cdot'; dot.style.background=color; if(square) dot.style.marginRight='0';
+  var n=document.createElement('span'); n.className='pill-n'; n.textContent=label; n.onclick=onName;
+  div.appendChild(dot); div.appendChild(n);
+  if(sub){ var sb=document.createElement('span'); sb.className='pill-ent'; sb.textContent=sub; div.appendChild(sb); }
+  if(onX){ var x=document.createElement('span'); x.className='pill-x'; x.innerHTML='×'; x.title='Archiver'; x.onclick=onX; div.appendChild(x); }
+  return div;
+}
 function renderManage() {
   var cp=document.getElementById('compPills'); if(!cp) return;
+  // Entités
+  var ep=document.getElementById('entPills'); ep.innerHTML='';
+  entities.forEach(function(e){
+    var nb=companies.filter(function(c){return c.eid===e.id && !c.archived;}).length;
+    ep.appendChild(makePill(e.color, e.name, nb+' dossier'+(nb>1?'s':''), function(){ openEdit('ent',e.id); }, null, true));
+  });
+  // Doublons
+  var dups=findDuplicateGroups(), dw=document.getElementById('dupWarn');
+  dw.innerHTML = dups.length ? '<div class="dup-warn"><span>⚠ '+dups.length+' dossier(s) en double : '+dups.map(function(g){return esc(g[0].name)+' ('+esc(entName(g[0].eid))+')';}).join(', ')+'</span><button onclick="mergeDuplicates()">Fusionner</button></div>' : '';
+  // Dossiers
+  var coMode=document.getElementById('coSort').value, q=normName(document.getElementById('coSearch').value), ef=document.getElementById('coEntFilter').value;
+  var nActive=activeCompanies().length;
+  var list=sortedCompanies(coMode).filter(function(o){ return !o.c.archived && (!ef || o.c.eid===ef) && (!q || normName(o.c.name).indexOf(q)>=0 || normName(entName(o.c.eid)).indexOf(q)>=0); });
   cp.innerHTML='';
-  companies.forEach(function(c){
-    var div=document.createElement('div'); div.className='pill';
-    var dot=document.createElement('span'); dot.className='cdot'; dot.style.background=c.color;
-    var x=document.createElement('span'); x.className='pill-x'; x.innerHTML='×';
-    (function(id){ x.onclick=function(){ delCompany(id); }; })(c.id);
-    div.appendChild(dot); div.appendChild(document.createTextNode(c.name)); div.appendChild(x);
-    cp.appendChild(div);
+  list.forEach(function(o){
+    var c=o.c;
+    var sub=(ef?'':entName(c.eid))+(coMode==='hours'?(ef?'':' · ')+fmtNum(o.h)+'h':'');
+    cp.appendChild(makePill(c.color, c.name, sub, function(){ openEdit('co',c.id); }, function(){ if(confirm('Archiver « '+c.name+' » ?\n\nIl ne reviendra plus dans les semaines suivantes. L\'historique et les heures sont conservés, et tu peux le restaurer à tout moment.')) archiveCompany(c.id); }));
+  });
+  if(!list.length) cp.innerHTML='<div class="list-empty">'+(nActive?'Aucun dossier ne correspond.':'Aucun dossier actif. Ajoute-en un ci-dessus.')+'</div>';
+  document.getElementById('coCount').textContent = (q||ef) ? list.length+' / '+nActive+' dossiers' : nActive+' dossier(s) actif(s)';
+  // Sous-dossiers
+  var pMode=document.getElementById('projSort').value, pq=normName(document.getElementById('projSearch').value);
+  var parr=projects.map(function(p,i){ var co=coById(p.cid); return {p:p,co:co,i:i,h:pMode==='hours'?projectHoursAll(p.id):0}; })
+    .filter(function(o){ return !isProjArchived(o.p) && (!pq || (normName(o.p.name)+' '+normName(o.co?o.co.name:'')+' '+normName(o.co?entName(o.co.eid):'')).indexOf(pq)>=0); });
+  var nActiveP=projects.filter(function(p){return !isProjArchived(p);}).length;
+  parr.sort(function(a,b){
+    var an=a.co?a.co.name:'', bn=b.co?b.co.name:'';
+    if(pMode==='name') return sortByName(a.p.name,b.p.name)||sortByName(an,bn);
+    if(pMode==='recent') return b.i-a.i;
+    if(pMode==='hours') return (b.h-a.h)||sortByName(a.p.name,b.p.name);
+    return sortByName(an,bn)||sortByName(a.p.name,b.p.name);
   });
   var pp=document.getElementById('projPills'); pp.innerHTML='';
-  projects.forEach(function(p){
-    var co=companies.find(function(c){return c.id===p.cid;});
-    var div=document.createElement('div'); div.className='pill';
-    var dot=document.createElement('span'); dot.className='cdot'; dot.style.background=co?co.color:'#ccc';
-    var x=document.createElement('span'); x.className='pill-x'; x.innerHTML='×';
-    (function(id){ x.onclick=function(){ delProject(id); }; })(p.id);
-    div.appendChild(dot);
-    div.appendChild(document.createTextNode((co?co.name:'?')+' › '+p.name));
-    div.appendChild(x); pp.appendChild(div);
+  parr.forEach(function(o){
+    var p=o.p, co=o.co;
+    pp.appendChild(makePill(co?co.color:'#ccc', (co?co.name:'?')+' › '+p.name, pMode==='hours'?fmtNum(o.h)+'h':'', function(){ openEdit('proj',p.id); }, function(){ if(confirm('Archiver le sous-dossier « '+p.name+' » ?\n\nIl ne reviendra plus dans les semaines suivantes. L\'historique est conservé.')) archiveProject(p.id); }));
   });
-  var sel=document.getElementById('newProjCo'); if(sel) sel.innerHTML=companies.map(function(c){return '<option value="'+c.id+'">'+c.name+'</option>';}).join('');
+  if(!parr.length) pp.innerHTML='<div class="list-empty">'+(nActiveP?'Aucun sous-dossier ne correspond.':'Aucun sous-dossier actif.')+'</div>';
+  document.getElementById('projCount').textContent = pq ? parr.length+' / '+nActiveP+' sous-dossiers' : nActiveP+' sous-dossier(s) actif(s)';
+  renderArchives();
+  var sel=document.getElementById('newProjCo');
+  if(sel){ var keep=sel.value; sel.innerHTML=dossierOptions(true); if(keep) sel.value=keep; }
+}
+function addEntity(){
+  var inp=document.getElementById('newEntName'), name=inp.value.trim(); if(!name) return;
+  var n=normName(name), dup=entities.find(function(e){return normName(e.name)===n;});
+  if(dup){ fieldError(inp,'⚠ « '+dup.name+' » existe déjà'); return; }
+  entities.push({id:'e'+uid(),name:name,color:ENT_COLORS[entities.length%ENT_COLORS.length]});
+  inp.value=''; persist(); openManage(); toast('Entité ajoutée ✓');
 }
 function addCompany() {
-  var inp=document.getElementById('newCoName'), name=inp.value.trim(); if(!name) return;
-  companies.push({id:uid(),name:name,color:COLORS[companies.length%COLORS.length]});
-  inp.value=''; persist(); renderManage(); render();
+  var inp=document.getElementById('newCoName'), name=inp.value.trim(), eid=document.getElementById('newCoEnt').value; if(!name||!eid) return;
+  var dup=findCompanyByName(name,null,eid);
+  if(dup){
+    if(dup.archived){ if(confirm('« '+dup.name+' » est archivé. Le restaurer ?')){ inp.value=''; restoreCompany(dup.id); } return; }
+    fieldError(inp,'⚠ « '+dup.name+' » existe déjà chez '+entName(eid)); document.getElementById('coSearch').value=name; renderManage(); return;
+  }
+  var other=findCompanyByName(name);
+  if(other && !confirm('« '+other.name+' » existe déjà chez '+entName(other.eid)+'. Créer quand même un dossier « '+name+' » chez '+entName(eid)+' ?')) return;
+  var cid=uid();
+  companies.push({id:cid,name:name,color:COLORS[companies.length%COLORS.length],eid:eid});
+  projects.push({id:uid(),cid:cid,name:'Général'});
+  inp.value=''; inp.classList.remove('field-error'); persist(); renderManage(); render(); toast('Dossier ajouté ✓ (avec « Général »)');
+}
+// Fusionne un sous-dossier "from" dans "into" : heures additionnées, commentaires concaténés, présence par semaine conservée
+function mergeProjectInto(fromId, intoId){
+  Object.keys(hours).forEach(function(wk){
+    var src=hours[wk]&&hours[wk][fromId]; if(!src) return;
+    var dst=hours[wk][intoId]=hours[wk][intoId]||{};
+    Object.keys(src).forEach(function(k){ var t=(parseFloat(dst[k])||0)+(parseFloat(src[k])||0); dst[k]=t||''; });
+    delete hours[wk][fromId];
+  });
+  Object.keys(comments).forEach(function(wk){
+    var src=comments[wk]&&comments[wk][fromId]; if(!src) return;
+    var dst=comments[wk][intoId]=comments[wk][intoId]||{};
+    Object.keys(src).forEach(function(k){ if(src[k]) dst[k]=dst[k]?dst[k]+' · '+src[k]:src[k]; });
+    delete comments[wk][fromId];
+  });
+  Object.keys(activeProjects).forEach(function(wk){
+    var a=activeProjects[wk]; var i=a.indexOf(fromId); if(i<0) return;
+    if(a.indexOf(intoId)>=0) a.splice(i,1); else a[i]=intoId;
+  });
+  projects=projects.filter(function(p){return p.id!==fromId;});
+}
+// Fusionne un dossier dans un autre : ses sous-dossiers y sont déplacés (fusionnés si même nom)
+function mergeDossierInto(fromId, intoId){
+  projects.filter(function(p){return p.cid===fromId;}).forEach(function(p){
+    var same=findProjectByName(intoId,p.name,p.id);
+    if(same) mergeProjectInto(p.id,same.id); else p.cid=intoId;
+  });
+  companies=companies.filter(function(c){return c.id!==fromId;});
+}
+function mergeEntityInto(fromId, intoId){
+  companies.filter(function(c){return c.eid===fromId;}).forEach(function(c){
+    var same=findCompanyByName(c.name,c.id,intoId);
+    if(same) mergeDossierInto(c.id,same.id); else c.eid=intoId;
+  });
+  entities=entities.filter(function(e){return e.id!==fromId;});
+}
+function mergeDuplicates(){
+  var groups=findDuplicateGroups(); if(!groups.length) return;
+  if(!confirm('Fusionner '+groups.length+' groupe(s) de dossiers en double ?\nLes sous-dossiers, heures et commentaires sont regroupés.')) return;
+  groups.forEach(function(g){
+    var keep=g.find(function(c){return !c.archived;})||g[0];
+    g.filter(function(c){return c!==keep;}).forEach(function(c){ mergeDossierInto(c.id,keep.id); });
+  });
+  persist(); renderManage(); render(); toast('Doublons fusionnés ✓');
+}
+var archOpen=false;
+function archiveCompany(id){
+  var c=coById(id); if(!c) return;
+  c.archived=true;
+  dropFromUpcomingWeeks(projects.filter(function(p){return p.cid===id;}).map(function(p){return p.id;}));
+  persist(); renderManage(); render(); toast('Dossier archivé — historique conservé');
+}
+function restoreCompany(id){ var c=coById(id); if(!c) return; delete c.archived; persist(); renderManage(); render(); toast('Dossier restauré ✓'); }
+function archiveProject(id){
+  var p=projects.find(function(x){return x.id===id;}); if(!p) return;
+  p.archived=true; dropFromUpcomingWeeks([id]);
+  persist(); renderManage(); render(); toast('Sous-dossier archivé — historique conservé');
+}
+function restoreProject(id){
+  var p=projects.find(function(x){return x.id===id;}); if(!p) return;
+  delete p.archived; var co=coById(p.cid); if(co) delete co.archived;
+  persist(); renderManage(); render(); toast('Restauré ✓');
+}
+function toggleArchives(){ archOpen=!archOpen; renderArchives(); }
+function renderArchives(){
+  var box=document.getElementById('archSec'); if(!box) return;
+  var aCos=companies.filter(function(c){return c.archived;}).sort(function(a,b){return sortByName(a.name,b.name);});
+  var aProjs=projects.filter(function(p){ var co=coById(p.cid); return p.archived && !(co&&co.archived); }).sort(function(a,b){ return sortByName((coById(a.cid)||{}).name||'',(coById(b.cid)||{}).name||'')||sortByName(a.name,b.name); });
+  var n=aCos.length+aProjs.length;
+  if(!n){ box.innerHTML=''; return; }
+  var h='<button class="arch-toggle" onclick="toggleArchives()">'+(archOpen?'▾':'▸')+' Archives ('+n+')</button><div class="arch-list'+(archOpen?' open':'')+'">';
+  aCos.forEach(function(c){
+    var nb=projects.filter(function(p){return p.cid===c.id;}).length;
+    h+='<div class="arch-item"><span class="cdot" style="background:'+c.color+'"></span><span class="nm">'+esc(c.name)+' <span class="pill-h">'+esc(entName(c.eid))+' · '+nb+' sous-dossier(s) · '+fmtNum(companyHoursAll(c.id))+'h</span></span><button onclick="restoreCompany(\''+c.id+'\')">Restaurer</button><button class="danger" onclick="deleteForever(\'co\',\''+c.id+'\')">Supprimer</button></div>';
+  });
+  aProjs.forEach(function(p){
+    var co=coById(p.cid);
+    h+='<div class="arch-item"><span class="cdot" style="background:'+(co?co.color:'#ccc')+'"></span><span class="nm">'+esc((co?co.name:'?')+' › '+p.name)+' <span class="pill-h">'+fmtNum(projectHoursAll(p.id))+'h</span></span><button onclick="restoreProject(\''+p.id+'\')">Restaurer</button><button class="danger" onclick="deleteForever(\'proj\',\''+p.id+'\')">Supprimer</button></div>';
+  });
+  box.innerHTML=h+'</div>';
+}
+// Suppression définitive : uniquement depuis les archives, avec avertissement
+function deleteForever(kind,id){
+  var nm, hrs;
+  if(kind==='co'){ var c=coById(id); if(!c) return; nm=c.name; hrs=companyHoursAll(id); }
+  else { var p=projects.find(function(x){return x.id===id;}); if(!p) return; nm=p.name; hrs=projectHoursAll(id); }
+  if(!confirm('Supprimer définitivement « '+nm+' » ?\n\n'+(hrs>0?fmtNum(hrs)+'h d\'historique seront perdues. ':'')+'Cette action est irréversible.')) return;
+  if(kind==='co') delCompany(id); else delProject(id);
+  toast('Supprimé définitivement');
 }
 function delCompany(id) {
+  var gone=projects.filter(function(p){return p.cid===id;}).map(function(p){return p.id;});
   companies=companies.filter(function(c){return c.id!==id;});
   projects=projects.filter(function(p){return p.cid!==id;});
+  [hours,comments].forEach(function(store){ Object.keys(store).forEach(function(wk){ gone.forEach(function(pid){ if(store[wk]) delete store[wk][pid]; }); }); });
   Object.keys(activeProjects).forEach(function(wk){ activeProjects[wk]=activeProjects[wk].filter(function(pid){return projects.find(function(p){return p.id===pid;});}); });
   persist(); renderManage(); render();
 }
 function addProject() {
   var name=document.getElementById('newProjName').value.trim(), cid=document.getElementById('newProjCo').value;
   if(!name||!cid) return;
-  projects.push({id:uid(),cid:cid,name:name}); document.getElementById('newProjName').value='';
+  var dupP=findProjectByName(cid,name);
+  if(dupP){
+    if(dupP.archived){ if(confirm('Le sous-dossier « '+dupP.name+' » est archivé. Le restaurer ?')){ document.getElementById('newProjName').value=''; restoreProject(dupP.id); } return; }
+    fieldError(document.getElementById('newProjName'),'⚠ Ce sous-dossier existe déjà dans ce dossier'); return;
+  }
+  projects.push({id:uid(),cid:cid,name:name}); document.getElementById('newProjName').value=''; toast('Sous-dossier ajouté ✓');
   persist(); renderManage(); render();
 }
 function delProject(id) {
   projects=projects.filter(function(p){return p.id!==id;});
+  [hours,comments].forEach(function(store){ Object.keys(store).forEach(function(wk){ if(store[wk]) delete store[wk][id]; }); });
   Object.keys(activeProjects).forEach(function(wk){ activeProjects[wk]=activeProjects[wk].filter(function(pid){return pid!==id;}); });
   persist(); renderManage(); render();
 }
+
+// ═══════════════════════════════════════════════════════════════
+// EDIT MODAL — renommer / déplacer / fusionner / archiver
+// ═══════════════════════════════════════════════════════════════
+var editing=null, editColor=null;
+function editObj(){ if(!editing) return null; if(editing.kind==='ent') return entById(editing.id); if(editing.kind==='co') return coById(editing.id); return projects.find(function(p){return p.id===editing.id;}); }
+function openEdit(kind,id){
+  editing={kind:kind,id:id}; var o=editObj(); if(!o) return;
+  var labels={ent:'Entité',co:'Dossier',proj:'Sous-dossier'};
+  document.getElementById('editTitle').textContent='Modifier : '+labels[kind].toLowerCase();
+  var inp=document.getElementById('editName'); inp.value=o.name; inp.classList.remove('field-error');
+  // Parent
+  var pw=document.getElementById('editParentWrap'), ps=document.getElementById('editParent');
+  if(kind==='co'){ pw.style.display=''; document.getElementById('editParentLabel').textContent='Entité'; ps.innerHTML=entityOptions(); ps.value=o.eid; }
+  else if(kind==='proj'){ pw.style.display=''; document.getElementById('editParentLabel').textContent='Dossier'; ps.innerHTML=dossierOptions(false); ps.value=o.cid; }
+  else pw.style.display='none';
+  // Couleur
+  var cw=document.getElementById('editColorWrap');
+  if(kind==='proj') cw.style.display='none';
+  else {
+    cw.style.display=''; editColor=o.color; var pal=kind==='ent'?ENT_COLORS:COLORS, box=document.getElementById('editColors'); box.innerHTML='';
+    pal.forEach(function(c){ var sw=document.createElement('div'); sw.className='color-swatch'+(c===editColor?' selected':''); sw.style.background=c; sw.onclick=function(){ editColor=c; box.querySelectorAll('.color-swatch').forEach(function(x){x.classList.remove('selected');}); sw.classList.add('selected'); }; box.appendChild(sw); });
+  }
+  // Fusion
+  var mt=document.getElementById('editMergeTarget'), opts='';
+  if(kind==='ent') opts=entities.filter(function(e){return e.id!==id;}).map(function(e){return '<option value="'+e.id+'">'+esc(e.name)+'</option>';}).join('');
+  else if(kind==='co') opts=entities.map(function(e){ var cs=companies.filter(function(c){return c.eid===e.id && c.id!==id;}).sort(function(a,b){return sortByName(a.name,b.name);}); return cs.length?'<optgroup label="'+esc(e.name)+'">'+cs.map(function(c){return '<option value="'+c.id+'">'+esc(c.name)+(c.archived?' (archivé)':'')+'</option>';}).join('')+'</optgroup>':''; }).join('');
+  else opts=entities.map(function(e){ var ps2=projects.filter(function(p){ var c=coById(p.cid); return p.id!==id && c && c.eid===e.id; }).sort(function(a,b){ return sortByName(coById(a.cid).name,coById(b.cid).name)||sortByName(a.name,b.name); }); return ps2.length?'<optgroup label="'+esc(e.name)+'">'+ps2.map(function(p){return '<option value="'+p.id+'">'+esc(coById(p.cid).name+' › '+p.name)+'</option>';}).join('')+'</optgroup>':''; }).join('');
+  mt.innerHTML=opts; document.getElementById('editMergeWrap').style.display=opts?'':'none';
+  document.getElementById('editMergeLabel').textContent='Fusionner dans un autre '+(kind==='ent'?'entité':labels[kind].toLowerCase());
+  // Archiver / supprimer
+  var ab=document.getElementById('editArchiveBtn');
+  if(kind==='ent'){ var nb=companies.filter(function(c){return c.eid===id;}).length; ab.style.display=nb?'none':''; ab.textContent='Supprimer l\'entité (vide)'; }
+  else { ab.style.display=''; ab.textContent=o.archived?'Restaurer':'Archiver'; }
+  document.getElementById('editModal').classList.add('open');
+  setTimeout(function(){ inp.focus(); },200);
+}
+function saveEdit(){
+  var o=editObj(); if(!o) return; var k=editing.kind;
+  var inp=document.getElementById('editName'), name=inp.value.trim(); if(!name){ inp.focus(); return; }
+  var parent=document.getElementById('editParent').value;
+  if(k==='ent'){
+    var n=normName(name), dup=entities.find(function(e){return e.id!==o.id && normName(e.name)===n;});
+    if(dup){ if(confirm('« '+dup.name+' » existe déjà. Fusionner les deux entités ?')){ mergeEntityInto(o.id,dup.id); finishEdit('Entités fusionnées ✓'); } else fieldError(inp,'⚠ Nom déjà utilisé'); return; }
+    o.name=name; o.color=editColor||o.color;
+  } else if(k==='co'){
+    var dupC=findCompanyByName(name,o.id,parent);
+    if(dupC){ if(confirm('« '+dupC.name+' » existe déjà chez '+entName(parent)+'. Fusionner les deux dossiers ?')){ mergeDossierInto(o.id,dupC.id); finishEdit('Dossiers fusionnés ✓'); } else fieldError(inp,'⚠ Nom déjà utilisé'); return; }
+    o.name=name; o.eid=parent; o.color=editColor||o.color;
+  } else {
+    var dupP=findProjectByName(parent,name,o.id);
+    if(dupP){ if(confirm('« '+dupP.name+' » existe déjà dans '+coById(parent).name+'. Fusionner (heures additionnées) ?')){ mergeProjectInto(o.id,dupP.id); finishEdit('Sous-dossiers fusionnés ✓'); } else fieldError(inp,'⚠ Nom déjà utilisé'); return; }
+    o.name=name; o.cid=parent;
+  }
+  finishEdit('Enregistré ✓');
+}
+function doMerge(){
+  var o=editObj(); if(!o) return; var k=editing.kind, t=document.getElementById('editMergeTarget').value; if(!t) return;
+  var tName = k==='ent'?entName(t):(k==='co'?coById(t).name:(function(){ var p=projects.find(function(x){return x.id===t;}); return coById(p.cid).name+' › '+p.name; })());
+  var warn = k==='proj' ? 'Les heures et commentaires seront additionnés.' : 'Son contenu (et l\'historique des heures) sera regroupé.';
+  if(!confirm('Fusionner « '+o.name+' » dans « '+tName+' » ?\n\n'+warn+' « '+o.name+' » disparaîtra.')) return;
+  if(k==='ent') mergeEntityInto(o.id,t); else if(k==='co') mergeDossierInto(o.id,t); else mergeProjectInto(o.id,t);
+  finishEdit('Fusionné ✓');
+}
+function editArchive(){
+  var o=editObj(); if(!o) return; var k=editing.kind;
+  if(k==='ent'){ if(confirm('Supprimer l\'entité « '+o.name+' » ?')){ entities=entities.filter(function(e){return e.id!==o.id;}); finishEdit('Entité supprimée'); } return; }
+  closeModal('editModal');
+  if(k==='co'){ if(o.archived) restoreCompany(o.id); else if(confirm('Archiver « '+o.name+' » ? L\'historique est conservé.')) archiveCompany(o.id); }
+  else { if(o.archived) restoreProject(o.id); else if(confirm('Archiver « '+o.name+' » ? L\'historique est conservé.')) archiveProject(o.id); }
+}
+function finishEdit(msg){ persist(); closeModal('editModal'); if(document.getElementById('manageModal').classList.contains('open')) openManage(); render(); toast(msg); }
 
 // ═══════════════════════════════════════════════════════════════
 // IMPORT CSV/EXCEL
@@ -949,11 +1520,12 @@ function parseCSV(text) {
   var first=text.split('\n')[0], sep=first.includes(';')?';':',';
   var lines=text.split('\n').map(function(l){return l.trim();}).filter(Boolean);
   var start=0; var h=lines[0]?lines[0].toLowerCase():'';
-  if(h.includes('soci')||h.includes('proj')||h.includes('comp')) start=1;
+  if(h.includes('soci')||h.includes('proj')||h.includes('comp')||h.includes('dossier')||h.includes('entit')) start=1;
   var rows=[];
   for(var i=start;i<lines.length;i++){
     var cols=lines[i].split(sep).map(function(c){return c.replace(/^"|"$/g,'').trim();});
-    if(cols[0]) rows.push({company:cols[0],project:cols[1]||''});
+    if(cols.length>=3 && cols[2]) rows.push({entity:cols[0],company:cols[1],project:cols[2]});
+    else if(cols[0]) rows.push({company:cols[0],project:cols[1]||''});
   }
   showImportPreview(rows);
 }
@@ -971,38 +1543,51 @@ function extractXLSXRows(buffer) {
       if(vMatch){ cols.push(tAttr.test(cell)?(shared[parseInt(vMatch[1])]||''):vMatch[1]); }else{ cols.push(''); }
       cellRe.lastIndex=0;
     }
-    if(firstRow){ firstRow=false; var hh=(cols[0]||'').toLowerCase(); if(hh.includes('soci')||hh.includes('proj')||hh.includes('comp')) continue; }
+    if(firstRow){ firstRow=false; var hh=(cols[0]||'').toLowerCase(); if(hh.includes('soci')||hh.includes('proj')||hh.includes('comp')||hh.includes('dossier')||hh.includes('entit')) continue; }
+    var c2=(cols[2]||'').trim();
+    if(c2){ var en=(cols[0]||'').trim(), co3=(cols[1]||'').trim(); if(co3) rows.push({entity:en,company:co3,project:c2}); continue; }
     var co=(cols[0]||'').trim(),proj=(cols[1]||'').trim(); if(co) rows.push({company:co,project:proj});
   }
   return rows;
 }
 function decodeXML(s){ return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"'); }
+function importEid(r){ if(r.entity){ var n=normName(r.entity), e=entities.find(function(x){return normName(x.name)===n;}); return e?e.id:'new:'+n; } return document.getElementById('importEnt').value; }
 function showImportPreview(rows) {
   importParsed=rows;
   var prev=document.getElementById('importPreview'), res=document.getElementById('importResult'), btn=document.getElementById('btnImport');
   if(!rows.length){ showImportError('Aucune ligne trouvée.'); return; }
-  var newCo=new Set(), newPr=[];
-  rows.forEach(function(r){ if(r.company&&!companies.find(function(c){return c.name.toLowerCase()===r.company.toLowerCase();})) newCo.add(r.company); if(r.project){ var co=companies.find(function(c){return c.name.toLowerCase()===r.company.toLowerCase();}); if(!projects.find(function(p){return p.name.toLowerCase()===r.project.toLowerCase()&&(co?p.cid===co.id:true);})) newPr.push(r); } });
-  prev.innerHTML=rows.slice(0,8).map(function(r){return '<div>'+r.company+' › '+r.project+'</div>';}).join('')+(rows.length>8?'<div style="color:#aaa">+'+( rows.length-8)+' lignes</div>':'');
-  prev.classList.add('show'); res.innerHTML='<strong>'+rows.length+'</strong> ligne(s) · <strong>'+newCo.size+'</strong> société(s) · <strong>'+newPr.length+'</strong> projet(s)'; res.classList.add('show'); btn.classList.add('show');
+  var newE={}, newCo={}, newPr={};
+  rows.forEach(function(r){
+    var eid=importEid(r); if(eid.indexOf('new:')===0) newE[eid]=1;
+    var co=eid.indexOf('new:')===0?null:findCompanyByName(r.company,null,eid);
+    if(!co) newCo[eid+'|'+normName(r.company)]=1;
+    if(r.project && !(co&&findProjectByName(co.id,r.project))) newPr[eid+'|'+normName(r.company)+'|'+normName(r.project)]=1;
+  });
+  prev.innerHTML=rows.slice(0,8).map(function(r){return '<div>'+esc((r.entity?r.entity+' › ':'')+r.company+' › '+r.project)+'</div>';}).join('')+(rows.length>8?'<div style="color:#aaa">+'+(rows.length-8)+' lignes</div>':'');
+  var ne=Object.keys(newE).length;
+  prev.classList.add('show'); res.innerHTML='<strong>'+rows.length+'</strong> ligne(s) · '+(ne?'<strong>'+ne+'</strong> entité(s) · ':'')+'<strong>'+Object.keys(newCo).length+'</strong> dossier(s) · <strong>'+Object.keys(newPr).length+'</strong> sous-dossier(s) à créer'; res.classList.add('show'); btn.classList.add('show');
 }
 function showImportError(msg){ importParsed=null; document.getElementById('importPreview').classList.remove('show'); document.getElementById('importResult').innerHTML='<span style="color:#e03">⚠ '+msg+'</span>'; document.getElementById('importResult').classList.add('show'); document.getElementById('btnImport').classList.remove('show'); }
 function confirmImport() {
   if(!importParsed||!importParsed.length) return;
-  var addedCo=0,addedPr=0;
+  var addedCo=0,addedPr=0, defEid=document.getElementById('importEnt').value;
   importParsed.forEach(function(r){
     if(!r.company) return;
-    var co=companies.find(function(c){return c.name.toLowerCase()===r.company.toLowerCase();});
-    if(!co){ co={id:uid(),name:r.company,color:COLORS[companies.length%COLORS.length]}; companies.push(co); addedCo++; }
-    if(r.project){ var exists=projects.find(function(p){return p.cid===co.id&&p.name.toLowerCase()===r.project.toLowerCase();}); if(!exists){ projects.push({id:uid(),cid:co.id,name:r.project}); addedPr++; } }
+    var eid = r.entity ? getOrCreateEntity(r.entity).id : defEid;
+    var co=findCompanyByName(r.company,null,eid);
+    if(co&&co.archived) delete co.archived;
+    if(!co){ co={id:uid(),name:r.company,color:COLORS[companies.length%COLORS.length],eid:eid}; companies.push(co); addedCo++; }
+    var pn=r.project||'Général';
+    var exists=findProjectByName(co.id,pn); if(exists&&exists.archived) delete exists.archived;
+    if(!exists){ projects.push({id:uid(),cid:co.id,name:pn}); addedPr++; }
   });
   persist(); importParsed=null;
   document.getElementById('importPreview').classList.remove('show'); document.getElementById('btnImport').classList.remove('show');
-  document.getElementById('importResult').innerHTML='✅ Importé : <strong>+'+addedCo+'</strong> société(s), <strong>+'+addedPr+'</strong> projet(s)';
-  renderManage(); render();
+  document.getElementById('importResult').innerHTML='✅ Importé : <strong>+'+addedCo+'</strong> dossier(s), <strong>+'+addedPr+'</strong> sous-dossier(s)';
+  openManage(); render();
 }
 function downloadTemplate() {
-  var csv='Société;Projet\nRoyen SA;Reporting mensuel\nRoyen SA;Clôture annuelle\nClient Externe;Audit Q2\n';
+  var csv='Entité;Dossier;Sous-dossier\nGehlen Management;Royen;Général\nGehlen Management;Cubiglace;M&A\nMaCo;Polomé;Général\n';
   var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'})); a.download='modele_import_timesheet.csv'; a.click();
 }
 
@@ -1010,8 +1595,8 @@ function downloadTemplate() {
 // CSV EXPORT
 // ═══════════════════════════════════════════════════════════════
 function exportCSV() {
-  var days=weekDays(currentMonday), lines=['Projet;Société;'+DAY_SHORT.join(';')+';Total'];
-  getActive().forEach(function(pid){ var p=projects.find(function(x){return x.id===pid;}); if(!p) return; var co=companies.find(function(c){return c.id===p.cid;}); var vals=days.map(function(_,di){return getH(pid,di)||'';}); lines.push([p.name,co?co.name:'',].concat(vals).concat([rowTotal(pid)]).join(';')); });
+  var days=weekDays(currentMonday), lines=['Entité;Dossier;Sous-dossier;'+DAY_SHORT.join(';')+';Total'];
+  getActive().forEach(function(pid){ var p=projects.find(function(x){return x.id===pid;}); if(!p) return; var co=companies.find(function(c){return c.id===p.cid;}); var vals=days.map(function(_,di){return getH(pid,di)||'';}); lines.push([co?entName(co.eid):'',co?co.name:'',p.name].concat(vals).concat([rowTotal(pid)]).join(';')); });
   var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8;'})); a.download='timesheet_'+wkKey()+'.csv'; a.click();
 }
 
@@ -1021,16 +1606,29 @@ function exportCSV() {
 
 function openPdfModal() {
   var coList=document.getElementById('pdfCoList');
-  coList.innerHTML=companies.map(function(c){ return '<label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#333;padding:6px 0;border-bottom:1px solid #f5f3ec"><input type="checkbox" class="pdf-co-cb" value="'+c.id+'" checked style="width:18px;height:18px;accent-color:'+c.color+'"><span class="cdot" style="background:'+c.color+'"></span>'+c.name+'</label>'; }).join('');
-  var days=weekDays(currentMonday);
-  document.getElementById('pdfFrom').value=dateKey(days[0]);
-  document.getElementById('pdfTo').value=dateKey(days[6]);
-  renderPdfQuickPeriods();
+  var html='';
+  entities.forEach(function(e){
+    var cos=companies.filter(function(c){return c.eid===e.id;}).sort(function(a,b){return sortByName(a.name,b.name);});
+    if(!cos.length) return;
+    html+='<label class="pdf-ent-item" data-eid="'+e.id+'" data-name="'+esc(normName(e.name))+'"><input type="checkbox" class="pdf-ent-cb" value="'+e.id+'" checked onchange="pdfToggleEntity(this)"><span class="ent-dot" style="background:'+e.color+';margin-right:0"></span>'+esc(e.name)+'<span class="pdf-co-h pdf-ent-h" data-eid="'+e.id+'"></span></label>';
+    html+=cos.map(function(c){ return '<label class="pdf-co-item" data-eid="'+e.id+'" data-name="'+esc(normName(c.name)+' '+normName(e.name))+'" style="display:flex;align-items:center;gap:10px;font-size:13px;color:#333;padding:8px 0;border-bottom:1px solid #f5f3ec"><input type="checkbox" class="pdf-co-cb" value="'+c.id+'" checked onchange="updatePdfCount()" style="width:18px;height:18px;accent-color:'+c.color+'"><span class="cdot" style="background:'+c.color+'"></span>'+esc(c.name)+(c.archived?'<span class="tag-arch">archivée</span>':'')+'<span class="pdf-co-h" data-cid="'+c.id+'"></span></label>'; }).join('');
+  });
+  coList.innerHTML=html;
+  document.getElementById('pdfCoSearch').value='';
+  document.getElementById('pdfHpd').value=getHpd();
+  var now0=new Date();
+  document.getElementById('pdfFrom').value=dateKey(new Date(now0.getFullYear(),0,1));
+  document.getElementById('pdfTo').value=dateKey(now0);
+  document.getElementById('pdfFrom').onchange=updatePdfHours;
+  document.getElementById('pdfTo').onchange=updatePdfHours;
+  renderPdfQuickPeriods(); updatePdfHours(); updatePdfCount();
   document.getElementById('pdfModal').classList.add('open');
 }
 function renderPdfQuickPeriods() {
   var now=new Date(), m=getMonday(now);
   var chips=[
+    {label:'Depuis le 1er janv.',from:new Date(now.getFullYear(),0,1),to:now},
+    {label:'Année dern.',from:new Date(now.getFullYear()-1,0,1),to:new Date(now.getFullYear()-1,11,31)},
     {label:'Cette semaine',from:m,to:addDays(m,6)},
     {label:'Semaine dern.',from:addDays(m,-7),to:addDays(m,-1)},
     {label:'4 semaines',from:addDays(m,-28),to:addDays(m,6)},
@@ -1046,24 +1644,92 @@ function renderPdfQuickPeriods() {
     qpDiv.appendChild(btn);
   });
 }
-function setPdfPeriod(from,to){ document.getElementById('pdfFrom').value=from; document.getElementById('pdfTo').value=to; }
+function setPdfPeriod(from,to){ document.getElementById('pdfFrom').value=from; document.getElementById('pdfTo').value=to; updatePdfHours(); }
+function filterPdfCos(){
+  var q=normName(document.getElementById('pdfCoSearch').value);
+  document.querySelectorAll('.pdf-co-item').forEach(function(el){ el.style.display = (!q || el.getAttribute('data-name').indexOf(q)>=0) ? 'flex' : 'none'; });
+  document.querySelectorAll('.pdf-ent-item').forEach(function(el){
+    var eid=el.getAttribute('data-eid'), any=[].some.call(document.querySelectorAll('.pdf-co-item[data-eid="'+eid+'"]'),function(x){return x.style.display!=='none';});
+    el.style.display = any ? 'flex' : 'none';
+  });
+}
+function pdfToggleEntity(cb){
+  document.querySelectorAll('.pdf-co-item[data-eid="'+cb.value+'"]').forEach(function(el){ if(el.style.display!=='none') el.querySelector('.pdf-co-cb').checked=cb.checked; });
+  updatePdfCount();
+}
+// Heures d'une société sur la période choisie
+function companyHoursInRange(cid,fromDate,toDate){
+  var pids=projects.filter(function(p){return p.cid===cid;}).map(function(p){return p.id;}), t=0;
+  getWeeksInRange(fromDate,toDate).forEach(function(monday){
+    var wk=dateKey(monday);
+    weekDays(monday).forEach(function(d,di){
+      if(d<fromDate||d>toDate) return;
+      pids.forEach(function(pid){ var r=hours[wk]&&hours[wk][pid]; if(r) t+=parseFloat(r[di]!==undefined?r[di]:r[String(di)])||0; });
+    });
+  });
+  return t;
+}
+function pdfRange(){
+  var f=document.getElementById('pdfFrom').value, t=document.getElementById('pdfTo').value;
+  if(!f||!t) return null; return {from:new Date(f+'T00:00:00'), to:new Date(t+'T00:00:00')};
+}
+function updatePdfHours(){
+  var r=pdfRange();
+  var perEnt={};
+  document.querySelectorAll('.pdf-co-h[data-cid]').forEach(function(el){
+    var cid=el.getAttribute('data-cid'), h=r?companyHoursInRange(cid,r.from,r.to):0, c=coById(cid);
+    if(c) perEnt[c.eid]=(perEnt[c.eid]||0)+h;
+    el.textContent = h>0 ? fmtNum(h)+'h' : '';
+  });
+  document.querySelectorAll('.pdf-ent-h').forEach(function(el){ var h=perEnt[el.getAttribute('data-eid')]||0; el.textContent=h>0?fmtNum(h)+'h':''; });
+}
+// Les boutons agissent sur les sociétés visibles (donc filtrées par la recherche)
+function pdfSelect(mode){
+  var r=pdfRange();
+  document.querySelectorAll('.pdf-co-item').forEach(function(el){
+    if(el.style.display==='none') return;
+    var cb=el.querySelector('.pdf-co-cb');
+    if(mode==='all') cb.checked=true;
+    else if(mode==='none') cb.checked=false;
+    else if(mode==='withHours') cb.checked = !!r && companyHoursInRange(cb.value,r.from,r.to)>0;
+  });
+  updatePdfCount();
+}
+function updatePdfCount(){
+  var all=document.querySelectorAll('.pdf-co-cb').length, on=document.querySelectorAll('.pdf-co-cb:checked').length;
+  document.getElementById('pdfCoCount').textContent='('+on+' / '+all+' sélectionné'+(on>1?'s':'')+')';
+  document.querySelectorAll('.pdf-ent-cb').forEach(function(ecb){
+    var cbs=document.querySelectorAll('.pdf-co-item[data-eid="'+ecb.value+'"] .pdf-co-cb'), n=[].filter.call(cbs,function(x){return x.checked;}).length;
+    ecb.checked = n===cbs.length && n>0; ecb.indeterminate = n>0 && n<cbs.length;
+  });
+}
 
 function generatePDF() {
   var selCids=[].slice.call(document.querySelectorAll('.pdf-co-cb:checked')).map(function(cb){return cb.value;});
-  if(!selCids.length){ toast('Sélectionne au moins une société'); return; }
+  if(!selCids.length){ toast('Sélectionne au moins un dossier'); return; }
   var fromStr=document.getElementById('pdfFrom').value, toStr=document.getElementById('pdfTo').value;
   if(!fromStr||!toStr){ toast('Sélectionne une période'); return; }
   var fromDate=new Date(fromStr+'T00:00:00'), toDate=new Date(toStr+'T00:00:00');
   var withDetail=document.getElementById('pdfOptDetail').checked;
   var withComments=document.getElementById('pdfOptComments').checked;
-  var separate=document.getElementById('pdfOptSeparate').checked;
+  var split=document.getElementById('pdfSplit').value;
   var recipient=document.getElementById('pdfRecipient').value.trim();
+  var hpdVal=parseFloat(String(document.getElementById('pdfHpd').value).replace(',','.'));
+  if(!(hpdVal>0)){ toast('Indique le nombre d\'heures par jour'); return; }
+  save('ts_hpd',hpdVal);
+  pdfShowDays=document.getElementById('pdfOptDays').checked;
   var periodLabel=fromDate.toLocaleDateString('fr-BE',{day:'2-digit',month:'long',year:'numeric'})+' – '+toDate.toLocaleDateString('fr-BE',{day:'2-digit',month:'long',year:'numeric'});
   var weeksInRange=getWeeksInRange(fromDate,toDate);
-  if(separate&&selCids.length>1){ selCids.forEach(function(cid){ printHtml(buildPdfHtml([cid],weeksInRange,fromDate,toDate,withDetail,withComments,recipient,periodLabel)); }); }
-  else{ printHtml(buildPdfHtml(selCids,weeksInRange,fromDate,toDate,withDetail,withComments,recipient,periodLabel)); }
+  var groups=[];
+  if(split==='co') groups=selCids.map(function(c){return [c];});
+  else if(split==='ent'){ var byE={}, order=[]; selCids.forEach(function(cid){ var e=(coById(cid)||{}).eid; if(!byE[e]){ byE[e]=[]; order.push(e);} byE[e].push(cid); }); groups=order.map(function(e){return byE[e];}); }
+  else groups=[selCids];
+  var made=0;
+  groups.forEach(function(g){ if(g.some(function(cid){return companyHoursInRange(cid,fromDate,toDate)>0;})){ printHtml(buildPdfHtml(g,weeksInRange,fromDate,toDate,withDetail,withComments,recipient,periodLabel)); made++; } });
+  if(!made){ toast('Aucune heure sur cette période pour la sélection'); return; }
   closeModal('pdfModal');
 }
+var pdfShowDays=true;
 function getWeeksInRange(fromDate,toDate) {
   var weeks=[], current=getMonday(fromDate);
   while(current<=toDate){ weeks.push(new Date(current.getFullYear(),current.getMonth(),current.getDate())); current=addDays(current,7); }
@@ -1118,10 +1784,12 @@ function buildPdfHtml(cids,weeks,fromDate,toDate,withDetail,withComments,recipie
       rowsData.push({name:proj.name,total:projTotal,days:dayEntries});
     });
     grandTotalAll+=coTotal;
-    summaryRows.push({name:co.name,color:co.color,total:coTotal});
+    summaryRows.push({name:co.name,color:co.color,total:coTotal,eid:co.eid});
     sections.push({co:co,rows:rowsData,coTotal:coTotal});
   });
 
+  // Heures (+ équivalent jours)
+  function HD(v){ return fmtNum(v)+'h'+(pdfShowDays&&v>0?' <span class="dj">('+fmtDays(v)+')</span>':''); }
   // Safe HTML escape
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
@@ -1150,6 +1818,11 @@ function buildPdfHtml(cids,weeks,fromDate,toDate,withDetail,withComments,recipie
     '.cot{font-size:15px;font-weight:700;color:#1a2d4a;margin-bottom:10px;display:flex;align-items:center;gap:8px}',
     '.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}',
     '.cm{font-size:10px;color:#888;font-style:italic;margin-top:2px}',
+    '.dj{font-weight:400;color:#777;font-size:.9em}',
+    '.base{font-size:10px;color:#888;margin-top:6px}',
+    '.sent{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:#1a2d4a;padding:8px 0 3px;border-bottom:1px solid #d5deea;margin-bottom:2px}',
+    '.srow.ind{padding-left:14px}',
+    '.coent{font-size:11px;font-weight:400;color:#888;margin-left:4px}',
     '.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;border-bottom:3px solid #1a2d4a;padding-bottom:20px}',
     '.hdr-r{text-align:right}',
     '.ftr{margin-top:40px;padding-top:12px;border-top:1px solid #eee;font-size:10px;color:#bbb;display:flex;justify-content:space-between}',
@@ -1167,35 +1840,45 @@ function buildPdfHtml(cids,weeks,fromDate,toDate,withDetail,withComments,recipie
   h.push('<div class="hdr-r">');
   h.push('<div style="font-size:20px;font-weight:700;color:#1a2d4a;margin-bottom:4px">Relev\u00e9 d\u2019heures prest\u00e9es</div>');
   h.push('<div style="font-size:13px;color:#666">'+esc(periodLabel)+'</div>');
+  var hdrEnts=[]; cids.forEach(function(cid){ var e=(coById(cid)||{}).eid; if(hdrEnts.indexOf(e)<0) hdrEnts.push(e); });
+  if(hdrEnts.length===1) h.push('<div style="font-size:13px;color:#1a2d4a;font-weight:600;margin-top:6px">'+esc(entName(hdrEnts[0]))+'</div>');
   if(recipient) h.push('<div style="font-size:13px;color:#333;font-weight:600;margin-top:6px">'+esc(recipient)+'</div>');
   h.push('</div></div>');
 
   // Summary
   h.push('<div class="sum"><h3>R\u00e9capitulatif</h3>');
-  summaryRows.forEach(function(r){
-    h.push('<div class="srow"><span><span class="dot" style="background:'+esc(r.color)+';display:inline-block;margin-right:6px"></span>'+esc(r.name)+'</span><strong>'+r.total+'h</strong></div>');
+  var entOrder=[]; summaryRows.forEach(function(r){ if(entOrder.indexOf(r.eid)<0) entOrder.push(r.eid); });
+  entOrder.sort(function(a,b){return entIndex(a)-entIndex(b);});
+  entOrder.forEach(function(eid){
+    var rows=summaryRows.filter(function(r){return r.eid===eid;}).sort(function(a,b){return sortByName(a.name,b.name);}), et=rows.reduce(function(sm,r){return sm+r.total;},0);
+    h.push('<div class="sent"><span>'+esc(entName(eid))+'</span><span>'+HD(et)+'</span></div>');
+    rows.forEach(function(r){
+    h.push('<div class="srow ind"><span><span class="dot" style="background:'+esc(r.color)+';display:inline-block;margin-right:6px"></span>'+esc(r.name)+'</span><strong>'+HD(r.total)+'</strong></div>');
+    });
   });
-  h.push('<div class="gt"><span>Total g\u00e9n\u00e9ral</span><span>'+grandTotalAll+'h</span></div>');
+  h.push('<div class="gt"><span>Total g\u00e9n\u00e9ral</span><span>'+HD(grandTotalAll)+'</span></div>');
+  if(pdfShowDays) h.push('<div class="base">Base : 1 jour = '+fmtNum(getHpd())+' heures</div>');
   h.push('</div>');
 
   // Sections
+  sections.sort(function(a,b){ return (entIndex(a.co.eid)-entIndex(b.co.eid)) || sortByName(a.co.name,b.co.name); });
   sections.forEach(function(sec){
     h.push('<div class="sec">');
-    h.push('<div class="cot"><span class="dot" style="background:'+esc(sec.co.color)+'"></span>'+esc(sec.co.name)+'</div>');
+    h.push('<div class="cot"><span class="dot" style="background:'+esc(sec.co.color)+'"></span>'+esc(sec.co.name)+'<span class="coent">· '+esc(entName(sec.co.eid))+'</span></div>');
     h.push('<table><thead><tr>');
-    h.push('<th>'+(withDetail?'Projet / Jour':'Projet')+'</th><th class="r">Heures</th>');
+    h.push('<th>'+(withDetail?'Sous-dossier / Jour':'Sous-dossier')+'</th><th class="r">Heures</th>');
     h.push('</tr></thead><tbody>');
     sec.rows.forEach(function(row){
-      h.push('<tr><td style="font-weight:600;border-top:1px solid #ddd">'+esc(row.name)+'</td><td class="r" style="font-weight:600;border-top:1px solid #ddd">'+(row.total>0?row.total+'h':'\u2014')+'</td></tr>');
+      h.push('<tr><td style="font-weight:600;border-top:1px solid #ddd">'+esc(row.name)+'</td><td class="r" style="font-weight:600;border-top:1px solid #ddd">'+(row.total>0?HD(row.total):'\u2014')+'</td></tr>');
       row.days.forEach(function(entry){
         if(withDetail&&entry.date){
-          h.push('<tr><td class="in">'+esc(entry.date)+(entry.c?'<div class="cm">'+esc(entry.c)+'</div>':'')+'</td><td class="r">'+(entry.h>0?entry.h+'h':'\u2014')+'</td></tr>');
+          h.push('<tr><td class="in">'+esc(entry.date)+(entry.c?'<div class="cm">'+esc(entry.c)+'</div>':'')+'</td><td class="r">'+(entry.h>0?fmtNum(entry.h)+'h':'\u2014')+'</td></tr>');
         } else if(!withDetail&&entry.c){
           h.push('<tr><td colspan="2" class="in"><div class="cm">'+esc(entry.c)+'</div></td></tr>');
         }
       });
     });
-    h.push('<tr class="sub"><td>Total '+esc(sec.co.name)+'</td><td class="r">'+sec.coTotal+'h</td></tr>');
+    h.push('<tr class="sub"><td>Total '+esc(sec.co.name)+'</td><td class="r">'+HD(sec.coTotal)+'</td></tr>');
     h.push('</tbody></table></div>');
   });
 
@@ -1233,11 +1916,12 @@ function toast(msg){ var el=document.getElementById('miniToast'); el.textContent
 // ═══════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════
+ensureEntities(true);
 render();
 if (!getToken()) {
   document.getElementById('tokenModal').classList.add('open');
 } else {
-  pullFromGitHub(function(){ render(); });
+  pullFromGitHub(function(){ ensureEntities(); render(); });
 }
 </script>
 <img id="macoLogo" src="data:image/png;base64,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" style="display:none" alt="">
