@@ -17,7 +17,10 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-he
 .tbtn{background:#2a2a2a;border:none;color:#bbb;border-radius:8px;padding:6px 12px;font-family:'Sora',sans-serif;font-size:12px;cursor:pointer}
 .tbtn:active{opacity:.75}
 .week-row{display:flex;align-items:center;gap:8px}
+.app-ver{font-size:9px;color:#666;font-weight:400;margin-left:4px;letter-spacing:0}
 .tsearch{position:relative;margin-top:8px}
+.tsearch input:-webkit-autofill{animation-name:tsAutofill;animation-duration:1ms;-webkit-box-shadow:0 0 0 40px #262626 inset;-webkit-text-fill-color:#fff}
+@keyframes tsAutofill{from{opacity:1}to{opacity:1}}
 .tsearch input{width:100%;background:#262626;border:1.5px solid #333;border-radius:10px;padding:9px 34px 9px 34px;color:#fff;font-family:'Sora',sans-serif;font-size:14px;outline:none;-webkit-appearance:none}
 .tsearch input:focus{border-color:var(--lime)}
 .tsearch input::placeholder{color:#777}
@@ -243,7 +246,7 @@ tr.entity-row:hover td{background:#333}
 
 <div class="topbar">
   <div class="topbar-r1">
-    <div class="logo">time<em>.</em>sheet</div>
+    <div class="logo">time<em>.</em>sheet <span class="app-ver">v19.10</span></div>
     <div class="top-btns"><span id="syncBadge" class="sync-badge sync-idle" onclick="if(!getToken())document.getElementById('tokenModal').classList.add('open')">●</span>
       <button class="tbtn" onclick="openManage()">⚙ Gérer</button>
       <button class="tbtn" onclick="openPdfModal()">↓ PDF</button>
@@ -257,7 +260,7 @@ tr.entity-row:hover td{background:#333}
   </div>
   <div class="tsearch" id="tsearchWrap">
     <span class="ts-ico">⌕</span>
-    <input type="search" id="tableSearch" name="ts-q-nofill" placeholder="Rechercher un dossier, une entité…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" oninput="onTableSearch()" onkeydown="if(event.key==='Escape'){clearTableSearch();this.blur();}">
+    <input type="search" id="tableSearch" name="ts-q-nofill" placeholder="Rechercher un dossier, une entité…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" readonly onpointerdown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')" onfocus="this.removeAttribute('readonly')" onblur="if(!this.value)this.setAttribute('readonly','')" onanimationstart="if(event.animationName==='tsAutofill'){this.value='';onTableSearch();}" oninput="onTableSearch()" onkeydown="if(event.key==='Escape'){clearTableSearch();this.blur();}">
     <button class="ts-clear" onclick="clearTableSearch()" aria-label="Effacer">✕</button>
   </div>
 </div>
@@ -2014,7 +2017,8 @@ ensureEntities(true);
 // Le navigateur peut restaurer/autoremplir le champ de recherche : on repart toujours d'un champ vide
 document.getElementById('tableSearch').value = '';
 window.addEventListener('pageshow', function(){ var i=document.getElementById('tableSearch'); if(i.value && document.activeElement!==i){ i.value=''; onTableSearch(); } });
-setTimeout(function(){ var i=document.getElementById('tableSearch'); if(i.value && document.activeElement!==i){ i.value=''; onTableSearch(); } }, 600);
+// Garde-fou : tant que l'utilisateur n'a pas touché au champ, toute valeur est un autoremplissage du navigateur
+(function(){ var n=0, t=setInterval(function(){ var i=document.getElementById('tableSearch'); if(i.value && document.activeElement!==i){ i.value=''; onTableSearch(); } if(++n>=10) clearInterval(t); }, 300); })();
 render();
 if (!getToken()) {
   document.getElementById('tokenModal').classList.add('open');
