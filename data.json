@@ -160,6 +160,12 @@
       "name": "Polomé",
       "color": "#f76a6a",
       "eid": "eum52ss"
+    },
+    {
+      "id": "2sfl9b",
+      "name": "Cuisines Albert",
+      "color": "#f0a83a",
+      "eid": "emyjbsz"
     }
   ],
   "projects": [
@@ -291,6 +297,11 @@
     {
       "id": "mgvuby",
       "cid": "i8z5xi",
+      "name": "Général"
+    },
+    {
+      "id": "wupbqk",
+      "cid": "2sfl9b",
       "name": "Général"
     }
   ],
@@ -990,7 +1001,8 @@
       "vh51rw",
       "6viuiv",
       "k0ceic",
-      "5h6pvl"
+      "5h6pvl",
+      "wupbqk"
     ]
   },
   "hours": {
@@ -2336,5 +2348,5 @@
       }
     }
   },
-  "savedAt": "2026-10-19T17:02:29.749Z"
+  "savedAt": "2026-10-19T17:03:19.691Z"
 }
