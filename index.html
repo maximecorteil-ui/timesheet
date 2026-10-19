@@ -188,6 +188,9 @@ tr.entity-row td:not(:first-child){text-align:center;font-family:'JetBrains Mono
 tr.entity-row td.et-total{color:var(--lime);font-size:13px}
 tr.entity-row:hover td{background:#333}
 .ent-toggle{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:#444;color:#fff;font-size:14px;font-weight:700;margin-right:8px;vertical-align:middle;line-height:1}
+.ent-edit{background:none;border:1px solid #555;color:#bbb;border-radius:6px;font-size:11px;padding:2px 7px;margin-left:8px;cursor:pointer;font-family:'Sora',sans-serif;vertical-align:middle}
+.ent-edit:hover{color:#fff;border-color:#888}
+.pill-edit{font-size:11px;color:#999;cursor:pointer;margin-left:2px}
 .ent-count{font-weight:400;font-size:11px;color:#999;margin-left:6px}
 .th-toggle{background:none;border:1px solid #444;color:#aaa;border-radius:6px;font-family:'Sora',sans-serif;font-size:10px;padding:2px 6px;cursor:pointer;text-transform:none;letter-spacing:0;margin-left:6px}
 .ent-dot{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:6px;vertical-align:middle}
@@ -254,7 +257,7 @@ tr.entity-row:hover td{background:#333}
   </div>
   <div class="tsearch" id="tsearchWrap">
     <span class="ts-ico">⌕</span>
-    <input type="search" id="tableSearch" placeholder="Rechercher un dossier, une entité…" autocomplete="off" oninput="onTableSearch()" onkeydown="if(event.key==='Escape'){clearTableSearch();this.blur();}">
+    <input type="search" id="tableSearch" name="ts-q-nofill" placeholder="Rechercher un dossier, une entité…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" oninput="onTableSearch()" onkeydown="if(event.key==='Escape'){clearTableSearch();this.blur();}">
     <button class="ts-clear" onclick="clearTableSearch()" aria-label="Effacer">✕</button>
   </div>
 </div>
@@ -944,6 +947,11 @@ function renderBody() {
       var tg = el('span','ent-toggle'); tg.textContent = isColl ? '+' : '−';
       eTd0.appendChild(tg); eTd0.appendChild(document.createTextNode(ent.name));
       var cnt = el('span','ent-count'); cnt.textContent = nDos+' dossier'+(nDos>1?'s':''); eTd0.appendChild(cnt);
+      if (entById(co.eid)) {
+        var eb = el('button','ent-edit'); eb.textContent = '✎'; eb.title = 'Renommer / couleur';
+        (function(eid){ eb.onclick = function(ev){ ev.stopPropagation(); openEdit('ent', eid); }; })(co.eid);
+        eTd0.appendChild(eb);
+      }
       eTr.appendChild(eTd0);
       days.forEach(function(_,i){ var t=entPids.reduce(function(sm,pid){return sm+getH(pid,i);},0); var td=el('td', i>=5?'we':''); td.textContent=t>0?fmtNum(t):''; eTr.appendChild(td); });
       var eTot = entPids.reduce(function(sm,pid){return sm+rowTotal(pid);},0);
@@ -1341,7 +1349,9 @@ function renderManage() {
   var ep=document.getElementById('entPills'); ep.innerHTML='';
   entities.forEach(function(e){
     var nb=companies.filter(function(c){return c.eid===e.id && !c.archived;}).length;
-    ep.appendChild(makePill(e.color, e.name, nb+' dossier'+(nb>1?'s':''), function(){ openEdit('ent',e.id); }, null, true));
+    var pl=makePill(e.color, e.name, nb+' dossier'+(nb>1?'s':''), function(){ openEdit('ent',e.id); }, null, true);
+    var ed=document.createElement('span'); ed.className='pill-edit'; ed.textContent='✎'; ed.title='Renommer'; ed.onclick=function(){ openEdit('ent',e.id); }; pl.appendChild(ed);
+    ep.appendChild(pl);
   });
   // Doublons
   var dups=findDuplicateGroups(), dw=document.getElementById('dupWarn');
@@ -2001,6 +2011,10 @@ function toast(msg){ var el=document.getElementById('miniToast'); el.textContent
 // INIT
 // ═══════════════════════════════════════════════════════════════
 ensureEntities(true);
+// Le navigateur peut restaurer/autoremplir le champ de recherche : on repart toujours d'un champ vide
+document.getElementById('tableSearch').value = '';
+window.addEventListener('pageshow', function(){ var i=document.getElementById('tableSearch'); if(i.value && document.activeElement!==i){ i.value=''; onTableSearch(); } });
+setTimeout(function(){ var i=document.getElementById('tableSearch'); if(i.value && document.activeElement!==i){ i.value=''; onTableSearch(); } }, 600);
 render();
 if (!getToken()) {
   document.getElementById('tokenModal').classList.add('open');
