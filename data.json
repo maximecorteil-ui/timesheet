@@ -166,6 +166,12 @@
       "name": "Cuisines Albert",
       "color": "#f0a83a",
       "eid": "emyjbsz"
+    },
+    {
+      "id": "koaz15",
+      "name": "Serbi",
+      "color": "#f76a8a",
+      "eid": "emyjbsz"
     }
   ],
   "projects": [
@@ -302,6 +308,11 @@
     {
       "id": "wupbqk",
       "cid": "2sfl9b",
+      "name": "Général"
+    },
+    {
+      "id": "f6wh7z",
+      "cid": "koaz15",
       "name": "Général"
     }
   ],
@@ -1002,7 +1013,8 @@
       "6viuiv",
       "k0ceic",
       "5h6pvl",
-      "wupbqk"
+      "wupbqk",
+      "f6wh7z"
     ]
   },
   "hours": {
@@ -2351,5 +2363,5 @@
       }
     }
   },
-  "savedAt": "2026-10-19T17:03:24.634Z"
+  "savedAt": "2026-10-19T17:03:37.559Z"
 }
