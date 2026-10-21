@@ -172,6 +172,12 @@
       "name": "Serbi",
       "color": "#f76a8a",
       "eid": "emyjbsz"
+    },
+    {
+      "id": "6vjcac",
+      "name": "CNTR Malmedy",
+      "color": "#a06af7",
+      "eid": "emyjbsz"
     }
   ],
   "projects": [
@@ -313,6 +319,11 @@
     {
       "id": "f6wh7z",
       "cid": "koaz15",
+      "name": "Général"
+    },
+    {
+      "id": "8udep5",
+      "cid": "6vjcac",
       "name": "Général"
     }
   ],
@@ -1014,7 +1025,8 @@
       "k0ceic",
       "5h6pvl",
       "wupbqk",
-      "f6wh7z"
+      "f6wh7z",
+      "8udep5"
     ]
   },
   "hours": {
@@ -2353,6 +2365,9 @@
       "ss7tdy": {
         "1": 1,
         "2": 2.5
+      },
+      "8udep5": {
+        "2": 8
       }
     }
   },
@@ -2384,5 +2399,5 @@
       }
     }
   },
-  "savedAt": "2026-10-21T23:02:54.847Z"
+  "savedAt": "2026-10-21T23:03:32.653Z"
 }
