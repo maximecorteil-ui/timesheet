@@ -178,6 +178,12 @@
       "name": "CNTR Malmedy",
       "color": "#a06af7",
       "eid": "emyjbsz"
+    },
+    {
+      "id": "d8z33u",
+      "name": "Country Hall",
+      "color": "#f0d83a",
+      "eid": "emyjbsz"
     }
   ],
   "projects": [
@@ -324,6 +330,11 @@
     {
       "id": "8udep5",
       "cid": "6vjcac",
+      "name": "Général"
+    },
+    {
+      "id": "6trgjc",
+      "cid": "d8z33u",
       "name": "Général"
     }
   ],
@@ -1055,7 +1066,8 @@
       "5h6pvl",
       "wupbqk",
       "f6wh7z",
-      "8udep5"
+      "8udep5",
+      "6trgjc"
     ]
   },
   "hours": {
@@ -2444,5 +2456,5 @@
       }
     }
   },
-  "savedAt": "2026-10-27T22:05:38.890Z"
+  "savedAt": "2026-10-27T22:06:14.525Z"
 }
