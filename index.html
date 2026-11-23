@@ -246,7 +246,7 @@ tr.entity-row:hover td{background:#333}
 
 <div class="topbar">
   <div class="topbar-r1">
-    <div class="logo">time<em>.</em>sheet <span class="app-ver">v19.10</span></div>
+    <div class="logo">time<em>.</em>sheet <span class="app-ver">v23.11b</span></div>
     <div class="top-btns"><span id="syncBadge" class="sync-badge sync-idle" onclick="if(!getToken())document.getElementById('tokenModal').classList.add('open')">●</span>
       <button class="tbtn" onclick="openManage()">⚙ Gérer</button>
       <button class="tbtn" onclick="openPdfModal()">↓ PDF</button>
@@ -364,9 +364,10 @@ tr.entity-row:hover td{background:#333}
         <input type="file" id="importFile" accept=".csv,.xlsx,.xls" onchange="onFileSelect(event)">
         <div class="import-icon">📂</div>
         <div class="import-label">Sélectionner un fichier</div>
-        <div class="import-sub">3 colonnes : Entité, Dossier, Sous-dossier<br>ou 2 colonnes : Dossier, Sous-dossier</div>
+        <div class="import-sub">3 colonnes : Entité, Dossier, Sous-dossier<br>ou 2 colonnes : Dossier, Sous-dossier<br>+ colonnes Lun…Dim (export CSV de l'app) : les heures sont reprises</div>
       </div>
       <div class="edit-row" style="align-items:center"><span style="font-size:12px;color:#777;flex:0 0 auto">Entité si 2 colonnes</span><select id="importEnt"></select></div>
+      <div class="edit-row" id="importWeekRow" style="display:none;align-items:center"><span style="font-size:12px;color:#777;flex:0 0 auto">Semaine des heures (lundi)</span><input type="date" id="importWeek" onchange="onImportWeekChange()" style="flex:1;padding:8px 10px;border:1.5px solid var(--border);border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;background:#fafaf8"></div>
       <div class="import-preview" id="importPreview"></div>
       <div class="import-result" id="importResult"></div>
       <button class="btn-import" id="btnImport" onclick="confirmImport()">Importer</button>
@@ -530,8 +531,8 @@ function coById(id){ return companies.find(function(c){return c.id===id;}); }
 function isProjArchived(p){ if(!p) return true; var co=coById(p.cid); return !!(p.archived || (co && co.archived)); }
 function activeCompanies(){ return companies.filter(function(c){return !c.archived;}); }
 // Retire un projet archivé des semaines à venir (à partir de cette semaine), sauf s'il y a déjà des heures/commentaires
-function dropFromUpcomingWeeks(pids){
-  var from=dateKey(getMonday(new Date()));
+function dropFromUpcomingWeeks(pids, fromKey){
+  var from=fromKey||dateKey(getMonday(new Date()));
   Object.keys(activeProjects).forEach(function(wk){
     if(wk<from) return;
     activeProjects[wk]=activeProjects[wk].filter(function(pid){
@@ -847,23 +848,29 @@ function getActive() {
   if (inherited.length) { activeProjects[key] = inherited; persist(); }
   return activeProjects[key] || [];
 }
+// Une nouvelle semaine reprend les lignes de la DERNIÈRE semaine déjà ouverte (et non plus l'union des 3 dernières),
+// pour qu'une ligne retirée ne revienne pas la semaine suivante. n = nombre de semaines max à remonter.
 function getRecentProjects(n) {
   var seen = {}, ordered = [];
-  for (var w = 1; w <= n; w++) {
-    var d = addDays(currentMonday, -w*7);
-    var k = dateKey(d);
-    var list = activeProjects[k];
-    if (list) list.forEach(function(pid) {
+  for (var w = 1; w <= Math.max(n, 12); w++) {
+    var k = dateKey(addDays(currentMonday, -w*7));
+    if (!activeProjects.hasOwnProperty(k)) continue;
+    activeProjects[k].forEach(function(pid) {
       var pp = projects.find(function(p){return p.id===pid;});
-      if (!seen[pid] && pp && !isProjArchived(pp)) {
-        seen[pid] = true; ordered.push(pid);
-      }
+      if (!seen[pid] && pp && !isProjArchived(pp)) { seen[pid] = true; ordered.push(pid); }
     });
+    break;
   }
   return ordered;
 }
 function setActive(arr) { activeProjects[wkKey()] = arr; persist(); }
-function removeFromWeek(pid) { setActive(getActive().filter(function(id){return id!==pid;})); render(); }
+// Retire la ligne de cette semaine ET des semaines suivantes déjà ouvertes (sauf si elles contiennent des heures/commentaires).
+// Les heures et commentaires ne sont jamais effacés : l'historique reste intact.
+function removeFromWeek(pid) {
+  activeProjects[wkKey()] = getActive().filter(function(id){return id!==pid;});
+  dropFromUpcomingWeeks([pid], dateKey(addDays(currentMonday, 7)));
+  persist(); render();
+}
 
 function rowTotal(pid) {
   var t = 0; for(var i=0;i<7;i++) t+=getH(pid,i); return t;
@@ -1607,7 +1614,9 @@ function finishEdit(msg){ persist(); closeModal('editModal'); if(document.getEle
 // ═══════════════════════════════════════════════════════════════
 function onFileDrop(e){ e.preventDefault(); document.getElementById('importZone').classList.remove('drag'); var f=e.dataTransfer.files[0]; if(f) handleFile(f); }
 function onFileSelect(e){ var f=e.target.files[0]; if(f) handleFile(f); e.target.value=''; }
+var importFileName='';
 function handleFile(file) {
+  importFileName=file.name||'';
   var name=file.name.toLowerCase();
   if(name.endsWith('.csv')){ var r=new FileReader(); r.onload=function(e){parseCSV(e.target.result);}; r.readAsText(file,'UTF-8'); }
   else if(name.endsWith('.xlsx')||name.endsWith('.xls')){ var r2=new FileReader(); r2.onload=function(e){parseXLSX(e.target.result);}; r2.readAsArrayBuffer(file); }
@@ -1618,21 +1627,24 @@ function parseCSV(text) {
   var lines=text.split('\n').map(function(l){return l.trim();}).filter(Boolean);
   var start=0; var h=lines[0]?lines[0].toLowerCase():'';
   if(h.includes('soci')||h.includes('proj')||h.includes('comp')||h.includes('dossier')||h.includes('entit')) start=1;
+  var dayIdx = start ? importDayColumns(lines[0].split(sep).map(function(c){return c.replace(/^"|"$/g,'').trim();})) : null;
   var rows=[];
   for(var i=start;i<lines.length;i++){
     var cols=lines[i].split(sep).map(function(c){return c.replace(/^"|"$/g,'').trim();});
-    if(cols.length>=3 && cols[2]) rows.push({entity:cols[0],company:cols[1],project:cols[2]});
-    else if(cols[0]) rows.push({company:cols[0],project:cols[1]||''});
+    var r=null;
+    if(cols.length>=3 && cols[2]) r={entity:cols[0],company:cols[1],project:cols[2]};
+    else if(cols[0]) r={company:cols[0],project:cols[1]||''};
+    if(r){ if(dayIdx) r.hours=importReadHours(cols,dayIdx); rows.push(r); }
   }
-  showImportPreview(rows);
+  showImportPreview(rows); importHoursUI(rows);
 }
-function parseXLSX(buffer) { try{ showImportPreview(extractXLSXRows(buffer)); }catch(e){ showImportError('Erreur Excel. Essaie CSV.'); } }
+function parseXLSX(buffer) { try{ var rows=extractXLSXRows(buffer); showImportPreview(rows); importHoursUI(rows); }catch(e){ showImportError('Erreur Excel. Essaie CSV.'); } }
 function extractXLSXRows(buffer) {
   var bytes=new Uint8Array(buffer), str='';
   for(var i=0;i<bytes.length;i++) str+=String.fromCharCode(bytes[i]);
   var shared=[], siRe=/<si>[\s\S]*?<\/si>/g, tRe=/<t[^>]*>([^<]*)<\/t>/g, siMatch;
   while((siMatch=siRe.exec(str))!==null){ var val='',tm,block=siMatch[0]; while((tm=tRe.exec(block))!==null) val+=tm[1]; shared.push(decodeXML(val)); tRe.lastIndex=0; }
-  var rowRe=/<row[^>]*>([\s\S]*?)<\/row>/g, cellRe=/<c[^>]*>([\s\S]*?)<\/c>/g, vRe=/<v>([^<]*)<\/v>/, tAttr=/t="s"/, rows=[], firstRow=true, rowMatch;
+  var xDayIdx=null, rowRe=/<row[^>]*>([\s\S]*?)<\/row>/g, cellRe=/<c[^>]*>([\s\S]*?)<\/c>/g, vRe=/<v>([^<]*)<\/v>/, tAttr=/t="s"/, rows=[], firstRow=true, rowMatch;
   while((rowMatch=rowRe.exec(str))!==null){
     var rowStr=rowMatch[1],cols=[],cMatch;
     while((cMatch=cellRe.exec(rowStr))!==null){
@@ -1640,9 +1652,9 @@ function extractXLSXRows(buffer) {
       if(vMatch){ cols.push(tAttr.test(cell)?(shared[parseInt(vMatch[1])]||''):vMatch[1]); }else{ cols.push(''); }
       cellRe.lastIndex=0;
     }
-    if(firstRow){ firstRow=false; var hh=(cols[0]||'').toLowerCase(); if(hh.includes('soci')||hh.includes('proj')||hh.includes('comp')||hh.includes('dossier')||hh.includes('entit')) continue; }
+    if(firstRow){ firstRow=false; var hh=(cols[0]||'').toLowerCase(); if(hh.includes('soci')||hh.includes('proj')||hh.includes('comp')||hh.includes('dossier')||hh.includes('entit')){ xDayIdx=importDayColumns(cols); continue; } }
     var c2=(cols[2]||'').trim();
-    if(c2){ var en=(cols[0]||'').trim(), co3=(cols[1]||'').trim(); if(co3) rows.push({entity:en,company:co3,project:c2}); continue; }
+    if(c2){ var en=(cols[0]||'').trim(), co3=(cols[1]||'').trim(); if(co3){ var rx={entity:en,company:co3,project:c2}; if(xDayIdx) rx.hours=importReadHours(cols,xDayIdx); rows.push(rx); } continue; }
     var co=(cols[0]||'').trim(),proj=(cols[1]||'').trim(); if(co) rows.push({company:co,project:proj});
   }
   return rows;
@@ -1665,6 +1677,37 @@ function showImportPreview(rows) {
   prev.classList.add('show'); res.innerHTML='<strong>'+rows.length+'</strong> ligne(s) · '+(ne?'<strong>'+ne+'</strong> entité(s) · ':'')+'<strong>'+Object.keys(newCo).length+'</strong> dossier(s) · <strong>'+Object.keys(newPr).length+'</strong> sous-dossier(s) à créer'; res.classList.add('show'); btn.classList.add('show');
 }
 function showImportError(msg){ importParsed=null; document.getElementById('importPreview').classList.remove('show'); document.getElementById('importResult').innerHTML='<span style="color:#e03">⚠ '+msg+'</span>'; document.getElementById('importResult').classList.add('show'); document.getElementById('btnImport').classList.remove('show'); }
+// ── Import des heures (fichiers avec colonnes Lun…Dim, ex. export CSV de l'app)
+function importDayColumns(head){
+  var idx=[], found=0;
+  DAY_SHORT.forEach(function(d,di){ var j=head.findIndex(function(c){ return normName(c).slice(0,3)===normName(d); }); idx[di]=j; if(j>=0) found++; });
+  return found ? idx : null;
+}
+function importReadHours(cols,idx){
+  return idx.map(function(j){ if(j<0) return 0; var v=parseFloat(String(cols[j]||'').replace(',','.')); return v>0 ? v : 0; });
+}
+function importHasHours(rows){ return (rows||[]).some(function(r){ return r.hours && r.hours.some(function(v){return v>0;}); }); }
+function importHoursUI(rows){
+  var row=document.getElementById('importWeekRow'), inp=document.getElementById('importWeek');
+  if(!rows || !rows.some(function(r){return r.hours;})){ row.style.display='none'; return; }
+  var m=importFileName.match(/(\d{4})-(\d{2})-(\d{2})/);
+  var d=m ? new Date(+m[1], +m[2]-1, +m[3]) : currentMonday;
+  inp.value=dateKey(getMonday(d)); row.style.display='flex';
+  importHoursSummary(rows);
+}
+function onImportWeekChange(){
+  var inp=document.getElementById('importWeek'); if(!inp.value) return;
+  var p=inp.value.split('-'); inp.value=dateKey(getMonday(new Date(+p[0], +p[1]-1, +p[2])));
+  importHoursSummary(importParsed);
+}
+function importHoursSummary(rows){
+  var res=document.getElementById('importResult'); if(!rows||!res) return;
+  var old=document.getElementById('importHoursInfo'); if(old) old.remove();
+  var tot=0; rows.forEach(function(r){ if(r.hours) r.hours.forEach(function(v){ tot+=v; }); });
+  var div=document.createElement('div'); div.id='importHoursInfo'; div.style.marginTop='4px';
+  div.innerHTML='⏱ <strong>'+fmtNum(tot)+'h</strong> à reprendre dans la semaine du <strong>'+esc(document.getElementById('importWeek').value.split('-').reverse().join('/'))+'</strong>';
+  res.appendChild(div);
+}
 function confirmImport() {
   if(!importParsed||!importParsed.length) return;
   var addedCo=0,addedPr=0, defEid=document.getElementById('importEnt').value;
@@ -1676,11 +1719,38 @@ function confirmImport() {
     if(!co){ co={id:uid(),name:r.company,color:COLORS[companies.length%COLORS.length],eid:eid}; companies.push(co); addedCo++; }
     var pn=r.project||'Général';
     var exists=findProjectByName(co.id,pn); if(exists&&exists.archived) delete exists.archived;
-    if(!exists){ projects.push({id:uid(),cid:co.id,name:pn}); addedPr++; }
+    if(!exists){ exists={id:uid(),cid:co.id,name:pn}; projects.push(exists); addedPr++; }
+    r._pid=exists.id;
   });
+  // Heures : reprises dans la semaine choisie. Les cases vides du fichier ne touchent pas aux heures existantes.
+  var hRes='';
+  if(importParsed.some(function(r){return r.hours;})){
+    var wk=document.getElementById('importWeek').value || wkKey();
+    var conflicts=0;
+    importParsed.forEach(function(r){ if(!r.hours||!r._pid) return; r.hours.forEach(function(v,di){
+      var cur=hours[wk]&&hours[wk][r._pid] ? parseFloat(hours[wk][r._pid][di])||0 : 0;
+      if(v>0 && cur>0 && cur!==v) conflicts++;
+    }); });
+    if(conflicts && !confirm(conflicts+' case(s) ont déjà des heures différentes dans cette semaine.\n\nOK = remplacer par les valeurs du fichier\nAnnuler = garder les heures actuelles pour ces cases')) conflicts=-1;
+    var nbH=0, totH=0;
+    if(!activeProjects[wk]) activeProjects[wk]=[];
+    importParsed.forEach(function(r){ if(!r.hours||!r._pid) return;
+      if(activeProjects[wk].indexOf(r._pid)<0) activeProjects[wk].push(r._pid);
+      r.hours.forEach(function(v,di){
+        if(!(v>0)) return;
+        if(!hours[wk]) hours[wk]={};
+        if(!hours[wk][r._pid]) hours[wk][r._pid]={};
+        var cur=parseFloat(hours[wk][r._pid][di])||0;
+        if(cur>0 && cur!==v && conflicts<0) return;
+        hours[wk][r._pid][di]=v; nbH++; totH+=v;
+      });
+    });
+    hRes=', <strong>'+fmtNum(totH)+'h</strong> reprises ('+nbH+' case(s)) dans la semaine du '+wk.split('-').reverse().join('/');
+    document.getElementById('importWeekRow').style.display='none';
+  }
   persist(); importParsed=null;
   document.getElementById('importPreview').classList.remove('show'); document.getElementById('btnImport').classList.remove('show');
-  document.getElementById('importResult').innerHTML='✅ Importé : <strong>+'+addedCo+'</strong> dossier(s), <strong>+'+addedPr+'</strong> sous-dossier(s)';
+  document.getElementById('importResult').innerHTML='✅ Importé : <strong>+'+addedCo+'</strong> dossier(s), <strong>+'+addedPr+'</strong> sous-dossier(s)'+hRes;
   openManage(); render();
 }
 function downloadTemplate() {
